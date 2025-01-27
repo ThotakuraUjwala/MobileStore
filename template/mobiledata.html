@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %}
+<title>AboutMobile</title>
+{% endblock title%} 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/mobiledata.css' %}" />
+{% endblock css %} 
+
+<!-- {% block js %}
+<script src="{% static 'js/mobiledata.js' %}"></script>
+{% endblock js %}  -->
+
+{% block body %}
+<div class="container">
+    {% for i in mobiledata %}
+    <div class="mobile-item">
+    
+      <div class="left-div" id="mobile-image">
+        <img src="{{ i.image.url }}" alt="Select a mobile" class="mobile-img" />
+      </div>
+
+      <div class="right-div" id="mobile-info">
+        <h2>{{ i.name }}</h2>
+        <div class="price-info">
+          <span class="price">{{ i.price }}</span>
+          <span class="orig-price"><strike>{{ i.origprice }}</strike></span>
+        </div>
+        <div id="keyfeatures">
+          <h3>Key Features</h3>
+          <h4>RAM: {{ i.ram }}</h4>
+          <h4>ROM: {{ i.rom }}</h4>
+          <h4>Camera: {{ i.camera }}</h4>
+          <h4>Battery: {{ i.battery }}</h4>
+        </div>
+        <div class="mainbtn">
+            <button class="addtocart">
+              <a href="" id="impact">Add to cart</a>
+            </button>
+            <button class="addtocart">
+                <a href="" id="impact">Buy now</a>
+            </button>
+
+        </div>
+      </div>
+
+      <div id="overview">
+        <h3>Overview</h3>
+        <p>{{ i.overview }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+{% endblock body %}

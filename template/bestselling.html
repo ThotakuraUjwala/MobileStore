@@ -20,16 +20,18 @@
         <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
         <div class="phone">
             {% for i in data %}
+            <a href="{% url 'myapp:mobiledata' i.id %}" style="text-decoration:none;">
             <div class="inphone">
                 <div class="phnimg">
                     <img src="{{i.image.url}}" alt="phone Image">
                 </div>
                 <div class="inphone1">
-                    <h2>{{i.name}}</h2>
+                    <h3>{{i.name}}</h3>
                     <span style="color: aquamarine; margin-top:2vw">{{i.price}}</span><span>
                     <strike class="discount" style="color: grey;" >{{i.origprice}}</strike></span>
                 </div>
             </div>
+            </a>
             {% endfor %}
         </div>
         <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
