@@ -1,14 +1,19 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Selling Phones</title>
+
+{% block title %}
+    <title>Home</title>
+{% endblock title%}
+
+{% block css %}
     <link rel="stylesheet" href="{% static 'css/bestselling.css' %}">
+{% endblock css %}
+
+{% block js %}
     <script src="{% static 'js/bestselling.js' %}"></script>
-</head>
-<body>
+{% endblock js %}
+
+{% block body %}
     <h1 id="best">Best Selling mobiles</h1>
 
     <div class="phone-container">
@@ -30,5 +35,5 @@
         <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
     </div>
 
-</body>
-</html>
+{% endblock body %}
+

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title></title>
+    {% endblock title %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block css %}
+ 
+    {% endblock css %}
+
+    {% block js %}
+
+    {% endblock js %}
+</head>
+<body>
+    {% block body %}
+
+    {% endblock body %}
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="{% static 'images/lion.webp' %}" alt="" style="height:60px;width:50px">
+                <h2>CONNECT WITH US</h2>
+                <div class="social-icons">
+                    <a href=""><img src="https://cdn-icons-png.flaticon.com/128/5968/5968756.png" alt="Discord"></a>
+                    <a href=""><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+                    <a href=""><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                    <a href=""><img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="LinkedIn"></a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 MobileStore | All Rights Reserved</p>
+                </div>
+            </div>
+            
+
+            <div class="footer-section">
+                <h2>COMPANY</h2>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Terms and Condition</a></li>
+                    <li><a href="#">Buying Guide</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Gift card</a></li>
+
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h2>PRODUCTS</h2>
+                <ul>
+                    <li><a href="">Mobiles</a></li>
+                    <li><a href="">Laptops</a></li>
+                    <li><a href="">Accessories</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
