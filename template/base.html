@@ -18,6 +18,34 @@
     {% endblock js %}
 </head>
 <body>
+    <header class="header">
+        <div class="logo">loma.com</div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search for smartphones, laptops etc">
+        </div>
+        <div class="delivery-time">Location</div>
+        <div class="icons">
+          <span>❤️</span> <!-- Replace with an icon if desired -->
+          <span>🛒</span> <!-- Replace with an icon if desired -->
+          <span class="login" onclick="alert('Redirecting to Login/Signup page')">Login/Signup</span>
+        </div>
+      </header>
+    
+      <!-- Category Bar Section -->
+      <div class="category-bar">
+        <div class="category-item" onclick="alert('Smartphones selected!')">
+          <img src="{% static 'images/smartphoneicon.png' %}" alt="">
+          <span>Smartphones</span>
+        </div>
+        <div class="category-item" onclick="alert('Smart Watches selected!')">
+          <img src="{% static 'images/accessoriesicon.png' %}" alt="">
+          <span>accessories</span>
+        </div>
+        <div class="category-item" onclick="alert('Laptops selected!')">
+          <img src="{% static 'images/laptopsicon.png' %}" alt="">
+          <span>Laptops</span>
+        </div>
+      </div>
     {% block body %}
 
     {% endblock body %}
