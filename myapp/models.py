@@ -12,4 +12,7 @@ class bestselling(models.Model):
     battery=models.CharField(max_length=100,null=True)
     overview=models.TextField(max_length=3000,null=True)
 
+class Slides(models.Model):
+    img=models.ImageField(upload_to='media/')
+  
 
