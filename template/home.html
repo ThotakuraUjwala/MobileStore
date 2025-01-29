@@ -6,17 +6,17 @@
 {% endblock title%}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/bestselling.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock css %}
 
 {% block js %}
-    <script src="{% static 'js/bestselling.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
 {% endblock js %}
 
 {% block body %}
 <div class="slider">
     <div class="slides">
-        {% for i in data %}
+        {% for i in slidesdata %}
 
         <div class="slide">
             <img src="{{i.img.url}}" alt="">

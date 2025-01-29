@@ -9,8 +9,11 @@ class slidesAdmin(admin.ModelAdmin):
     list_display=['img']
 
 admin.site.register(Slides,slidesAdmin)
+admin.site.register(bestselling,bestsellingAdmin)
+
+
 # class mobiledataAdmin(admin.ModelAdmin):
 #     list_display=['name','ram','rom','camera','battery','overview']
-
-admin.site.register(bestselling,bestsellingAdmin)
 # admin.site.register(mobiledata,mobiledataAdmin)
+
+
