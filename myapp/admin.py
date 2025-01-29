@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 class bestsellingAdmin(admin.ModelAdmin):
-    list_display=['image','name','price','origprice']
+    list_display_1=['image','name','price','origprice']
     
 class slidesAdmin(admin.ModelAdmin):
     list_display=['img']
