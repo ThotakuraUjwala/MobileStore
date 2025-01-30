@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import *
+from .views import home, mobiledataview
 
-app_name='myapp'
+app_name = 'myapp'
 
-urlpatterns=[
-    # path('',slides,name='slides'),
-    path('',bestphones,name='bestsellingphone'),
-    path('mobiledata/<int:id>',mobiledataview,name='mobiledata')
+urlpatterns = [
+    path('', home, name='home'),  # Use the combined home view for both slides and bestphones
+    path('mobiledata/<int:id>', mobiledataview, name='mobiledata'),
 ]
+
 
