@@ -7,3 +7,4 @@ function movePhones(direction) {
         phoneContainer.scrollBy({ left: phoneWidth, behavior: 'smooth' });
     }
 }
+
