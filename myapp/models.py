@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class mobiles(models.Model):
@@ -16,5 +18,5 @@ class mobiles(models.Model):
 
 class Slides(models.Model):
     img=models.ImageField(upload_to='media/')
-  
+
 

@@ -1,8 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block title %}
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %}
 <title>Home</title>
-{% endblock title%} {% block css %}
+{% endblock title%} 
+
+{% block css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-{% endblock css %} {% block js %}
+{% endblock css %} 
+
+{% block js %}
 <script src="{% static 'js/home.js' %}"></script>
 {% endblock js %} {% block body %}
 <div class="slider">
@@ -43,12 +51,8 @@
         </div>
         <div class="inphone1">
           <h3>{{i.name}}</h3>
-          <span style="color: aquamarine; margin-top: 2vw">{{i.price}}</span
-          ><span>
-            <strike class="discount" style="color: grey"
-              >{{i.origprice}}</strike
-            ></span
-          >
+          <span style="color: aquamarine; margin-top: 2vw">{{i.price}}</span><span>
+            <strike class="discount" style="color: grey">{{i.origprice}}</strike></span>
         </div>
       </div>
     </a>
