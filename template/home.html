@@ -57,7 +57,20 @@
   <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
 </div>
 
+<h2>Shop Phones by Brand</h2>
+<div class="brand-container">
+    {% for brand in brands %}
+    <div class="brand" onclick="redirectToBrand('{{ brand.name|lower }}')">
+        <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+        <div class="brand-name">{{ brand.name }}</div>
+    </div>
+    {% endfor %}
+</div>
+
 <script>
+  function redirectToBrand(brand) {
+    window.location.href = `/mobiles/brand/${brand}/`;
+}
   const slides = document.querySelector(".slides");
   const slide = document.querySelectorAll(".slide");
   const prevBtn = document.querySelector(".prev");

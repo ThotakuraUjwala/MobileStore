@@ -174,3 +174,34 @@ a {
     background-color: #fff;
 }
 /* ---sliders--- */
+
+/* ---brands--- */
+.brand-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.brand {
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+.brand img:hover {
+    transform: scale(1.1);
+}
+.brand-name {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
