@@ -1,139 +1,135 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}
-    <title>Home</title>
-{% endblock title%}
-
-{% block css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock css %}
-
-{% block js %}
-    <script src="{% static 'js/home.js' %}"></script>
-{% endblock js %}
-
-{% block body %}
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Home</title>
+{% endblock title%} {% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock css %} {% block js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock js %} {% block body %}
 <div class="slider">
-    <div class="slides">
-        {% for i in slidesdata %}
+  <div class="slides">
+    {% for i in slidesdata %}
 
-        <div class="slide">
-            <img src="{{i.img.url}}" alt="">
-        </div>
-        {% endfor %}
+    <div class="slide">
+      <img src="{{i.img.url}}" alt="" />
     </div>
+    {% endfor %}
+  </div>
 
-    <button class="nav-btn prev">&#10094;</button>
-    <button class="nav-btn next">&#10095;</button>
+  <button class="nav-btn prev">&#10094;</button>
+  <button class="nav-btn next">&#10095;</button>
 
-    <div class="dots">
-        <div class="dot active" data-index="0"></div>
-        <div class="dot" data-index="1"></div>
-        <div class="dot" data-index="2"></div>
-        <div class="dot" data-index="3"></div>
-        <div class="dot" data-index="4"></div>
-        <div class="dot" data-index="5"></div>
-        <div class="dot" data-index="6"></div>
-        <div class="dot" data-index="7"></div>
-    </div>
+  <div class="dots">
+    <div class="dot active" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot" data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+    <div class="dot" data-index="4"></div>
+    <div class="dot" data-index="5"></div>
+    <div class="dot" data-index="6"></div>
+    <div class="dot" data-index="7"></div>
+  </div>
 </div>
 
-    <h1 id="best">Best Selling mobiles_</h1>
+<h1 id="best">Best Selling mobiles</h1>
 
-    <div class="phone-container">
-        <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
-        <div class="phone">
-            {% for i in data %}
-            <a href="{% url 'myapp:mobiledata' i.id %}" style="text-decoration:none;">
-            <div class="inphone">
-                <div class="phnimg">
-                    <img src="{{i.image.url}}" alt="phone Image">
-                </div>
-                <div class="inphone1">
-                    <h3>{{i.name}}</h3>
-                    <span style="color: aquamarine; margin-top:2vw">{{i.price}}</span><span>
-                    <strike class="discount" style="color: grey;" >{{i.origprice}}</strike></span>
-                </div>
-            </div>
-            </a>
-            {% endfor %}
+<div class="phone-container">
+  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <div class="phone">
+    {% for i in bestselling %}
+    <a href="{% url 'myapp:mobiledata' i.id %}" style="text-decoration: none">
+      <div class="inphone">
+        <div class="phnimg">
+          <img src="{{i.image.url}}" alt="phone Image" />
         </div>
-        <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
-    </div>
+        <div class="inphone1">
+          <h3>{{i.name}}</h3>
+          <span style="color: aquamarine; margin-top: 2vw">{{i.price}}</span
+          ><span>
+            <strike class="discount" style="color: grey"
+              >{{i.origprice}}</strike
+            ></span
+          >
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+</div>
+
 <script>
-    const slides = document.querySelector('.slides');
-    const slide = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    const dots = document.querySelectorAll('.dot');
+  const slides = document.querySelector(".slides");
+  const slide = document.querySelectorAll(".slide");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+  const dots = document.querySelectorAll(".dot");
 
-    let currentIndex = 0;
-    const slideCount = slide.length;
+  let currentIndex = 0;
+  const slideCount = slide.length;
 
-    // Clone first and last slides for seamless looping
-    const firstClone = slide[0].cloneNode(true);
-    const lastClone = slide[slideCount - 1].cloneNode(true);
-    slides.appendChild(firstClone);
-    slides.prepend(lastClone);
+  // Clone first and last slides for seamless looping
+  const firstClone = slide[0].cloneNode(true);
+  const lastClone = slide[slideCount - 1].cloneNode(true);
+  slides.appendChild(firstClone);
+  slides.prepend(lastClone);
 
-    const totalSlides = slideCount + 2; // Include clones
-    slides.style.transform = `translateX(-${100}%)`;
+  const totalSlides = slideCount + 2; // Include clones
+  slides.style.transform = `translateX(-${100}%)`;
 
-    function updateSlider() {
-        slides.style.transition = 'transform 0.5s ease-in-out';
-        slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+  function updateSlider() {
+    slides.style.transition = "transform 0.5s ease-in-out";
+    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
 
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentIndex);
+    });
+  }
+
+  function jumpToRealSlide() {
+    slides.style.transition = "none"; // Disable animation
+    if (currentIndex === -1) {
+      currentIndex = slideCount - 1;
+      slides.style.transform = `translateX(-${currentIndex + 1}00%)`;
+    } else if (currentIndex === slideCount) {
+      currentIndex = 0;
+      slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
     }
+  }
 
-    function jumpToRealSlide() {
-        slides.style.transition = 'none'; // Disable animation
-        if (currentIndex === -1) {
-            currentIndex = slideCount - 1;
-            slides.style.transform = `translateX(-${currentIndex + 1}00%)`;
-        } else if (currentIndex === slideCount) {
-            currentIndex = 0;
-            slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-        }
+  // Next Button
+  nextBtn.addEventListener("click", () => {
+    currentIndex++;
+    updateSlider();
+    if (currentIndex === slideCount) {
+      setTimeout(jumpToRealSlide, 500); // Delay for transition
     }
+  });
 
-    // Next Button
-    nextBtn.addEventListener('click', () => {
-        currentIndex++;
-        updateSlider();
-        if (currentIndex === slideCount) {
-            setTimeout(jumpToRealSlide, 500); // Delay for transition
-        }
+  // Previous Button
+  prevBtn.addEventListener("click", () => {
+    currentIndex--;
+    updateSlider();
+    if (currentIndex === -1) {
+      setTimeout(jumpToRealSlide, 500); // Delay for transition
+    }
+  });
+
+  // Dots
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      currentIndex = parseInt(dot.getAttribute("data-index"));
+      updateSlider();
     });
+  });
 
-    // Previous Button
-    prevBtn.addEventListener('click', () => {
-        currentIndex--;
-        updateSlider();
-        if (currentIndex === -1) {
-            setTimeout(jumpToRealSlide, 500); // Delay for transition
-        }
-    });
-
-    // Dots
-    dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-            currentIndex = parseInt(dot.getAttribute('data-index'));
-            updateSlider();
-        });
-    });
-
-    // Auto Slide
-    setInterval(() => {
-        currentIndex++;
-        updateSlider();
-        if (currentIndex === slideCount) {
-            setTimeout(jumpToRealSlide, 500); // Delay for transition
-        }
-    }, 5000);
+  // Auto Slide
+  setInterval(() => {
+    currentIndex++;
+    updateSlider();
+    if (currentIndex === slideCount) {
+      setTimeout(jumpToRealSlide, 500); // Delay for transition
+    }
+  }, 5000);
 </script>
-{% endblock body %}
 
+{% endblock body %}

@@ -3,11 +3,11 @@
 {% load static %} 
 
 {% block title %}
-<title>AboutMobile</title>
+<title>Your cart</title>
 {% endblock title%} 
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/mobiledata.css' %}" />
+<link rel="stylesheet" href="{% static 'css/cart.css' %}" />
 {% endblock css %} 
 
 <!-- {% block js %}
@@ -15,8 +15,9 @@
 {% endblock js %}  -->
 
 {% block body %}
+<h1 id="heading">Your cart is displayed below</h1>
 <div class="container">
-    {% for i in mobiledata %}
+    {% for i in cartnum %}
     <div class="mobile-item">
     
       <div class="left-div" id="mobile-image">
@@ -36,20 +37,17 @@
           <h4>Camera: {{ i.camera }}</h4>
           <h4>Battery: {{ i.battery }}</h4>
         </div>
-        <div class="mainbtn">
+        <!-- <div class="mainbtn">
             <button class="addtocart">
-              <a href="{% url 'myapp:cart' %}" id="impact">Add to cart</a>
+              <a href="" id="impact">Add to cart</a>
             </button>
             <button class="addtocart">
                 <a href="" id="impact">Buy now</a>
             </button>
 
-        </div>
+        </div> -->
       </div>
-    </div>
-    <div id="overview">
-      <h3>Overview</h3>
-      <p>{{ i.overview }}</p>
+
     </div>
     {% endfor %}
   </div>

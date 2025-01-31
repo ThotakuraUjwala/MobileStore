@@ -2,14 +2,14 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-class bestsellingAdmin(admin.ModelAdmin):
-    list_display_1=['image','name','price','origprice']
+class mobilesAdmin(admin.ModelAdmin):
+    list_display_1=['image','name','price','origprice','is_bestselling','is_deals']
     
 class slidesAdmin(admin.ModelAdmin):
     list_display=['img']
 
 admin.site.register(Slides,slidesAdmin)
-admin.site.register(bestselling,bestsellingAdmin)
+admin.site.register(mobiles,mobilesAdmin)
 
 
 # class mobiledataAdmin(admin.ModelAdmin):

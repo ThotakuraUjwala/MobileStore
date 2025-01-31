@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class bestselling(models.Model):
+class mobiles(models.Model):
     image=models.ImageField(upload_to='media/')
     name=models.CharField(max_length=100)
     price=models.IntegerField()
@@ -11,6 +11,8 @@ class bestselling(models.Model):
     camera=models.CharField(max_length=100,null=True)
     battery=models.CharField(max_length=100,null=True)
     overview=models.TextField(max_length=3000,null=True)
+    is_bestselling=models.BooleanField(null=True,default=False)
+    is_deals=models.BooleanField(null=True,default=False)
 
 class Slides(models.Model):
     img=models.ImageField(upload_to='media/')

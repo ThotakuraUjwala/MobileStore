@@ -19,33 +19,39 @@
 </head>
 <body>
     <header class="header">
-        <div class="logo">loma.com</div>
+        <div class="logo">Loma.com</div>
         <div class="search-bar">
           <input type="text" placeholder="Search for smartphones, laptops etc">
         </div>
+        <a href="{% url 'myapp:home' %}" style="text-decoration:none;color:white"><div class="home">Home</div></a>
         <div class="delivery-time">Location</div>
         <div class="icons">
-          <span>❤️</span> <!-- Replace with an icon if desired -->
-          <span>🛒</span> <!-- Replace with an icon if desired -->
-          <span class="login" onclick="alert('Redirecting to Login/Signup page')">Login/Signup</span>
+          <span>❤️Whislist</span> <!-- Replace with an icon if desired -->
+          <a href="{% url 'myapp:cart' %}" style="text-decoration:none;color:white">
+          <span>🛒Cart</span> <!-- Replace with an icon if desired -->
+          </a>
+          <span class="login">Login/Signup</span>
         </div>
-      </header>
+    </header>
     
       <!-- Category Bar Section -->
       <div class="category-bar">
-        <div class="category-item" onclick="alert('Smartphones selected!')">
-          <img src="{% static 'images/Mobile_logo.jpg' %}" alt="">
-          <span>Smartphones</span>
-        </div>
-        <div class="category-item" onclick="alert('Smart Watches selected!')">
+        <a href="{% url 'myapp:allmobiles' %}" style="text-decoration:none">
+            <div class="category-item">
+                <img src="{% static 'images/Mobile_logo.jpg' %}" alt="">
+                <span>Mobiles</span>
+            </div>
+        </a>
+        
+        <div class="category-item" >
           <img src="{% static 'images/accessories_logo.jpg' %}" alt="">
           <span>Accessories</span>
         </div>
-        <div class="category-item" onclick="alert('Laptops selected!')">
+        <div class="category-item" >
           <img src="{% static 'images/laptops_logo.jpg' %}" alt="">
           <span>Laptops</span>
         </div>
-      </div>
+    </div>
     {% block body %}
 
     {% endblock body %}
