@@ -8,3 +8,11 @@ function movePhones(direction) {
   }
 }
 
+// offers
+function moveProducts(direction) {
+  const container = document.querySelector('#productContainer');
+  const scrollAmount = 300; // Adjust as per required scroll step
+  const offset = direction === 'left' ? -scrollAmount : scrollAmount;
+  container.scrollBy({ left: offset, behavior: 'smooth' });
+}
+

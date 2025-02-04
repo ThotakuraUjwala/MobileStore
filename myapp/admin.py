@@ -1,19 +1,20 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
 class mobilesAdmin(admin.ModelAdmin):
-    list_display_1=['image','name','price','origprice','is_bestselling','is_deals']
-    
+    list_display = ['image', 'name', 'price', 'origprice', 'is_bestselling', 'is_deals', 'brand']
+
 class slidesAdmin(admin.ModelAdmin):
-    list_display=['img']
+    list_display = ['img']
 
-admin.site.register(Slides,slidesAdmin)
-admin.site.register(mobiles,mobilesAdmin)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ['name', 'logo']
 
+class offerAdmin(admin.ModelAdmin):
+    list_display=['off','img','name','off_price','old_price']
 
-# class mobiledataAdmin(admin.ModelAdmin):
-#     list_display=['name','ram','rom','camera','battery','overview']
-# admin.site.register(mobiledata,mobiledataAdmin)
-
+admin.site.register(Offer,offerAdmin)
+admin.site.register(Slides, slidesAdmin)
+admin.site.register(mobiles, mobilesAdmin)
+admin.site.register(Brand, BrandAdmin)
 

@@ -61,7 +61,47 @@
   <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
 </div>
 
+
+<h1 id="best">Shop Mobiles by Brand</h1>
+<div class="brand-container">
+    {% for brand in brands %}
+    <div class="brand" onclick="redirectToBrand('{{ brand.name|lower }}')">
+        <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+        <!-- <div class="brand-name">{{ brand.name }}</div> -->
+    </div>
+    {% endfor %}
+</div>
+
+<div class="header">
+  <h1>Hurry Up! Get Up to 30% Off</h1>
+  <div class="timer">01 Days</div>
+</div>
+<div class="scroll-container">
+  <button class="scroll-btn left" id="scrollLeft" onclick="moveProducts('left')">&#9664;</button>
+  <div class="product-container" id="productContainer">
+    <!-- Product Cards -->
+    {% for i in offerdata %}
+    <div class="product-card">
+      <div class="discount-badge">{{i.off}}% off</div>
+      <img src="{{i.img.url}}" alt="Samsung A35">
+      <div class="product-name">{{i.name}}</div>
+      <div class="product-price">
+        <span>₹ {{i.off_price}}</span> <span class="old-price">₹ {{i.old_price}}</span>
+      </div>
+      <button class="add-to-cart">+ Add to Cart</button>
+    </div>
+    {% endfor %}
+    <!-- Add more product cards as needed -->
+  </div>
+  <button class="scroll-btn right" id="scrollRight" onclick="moveProducts('right')">&#9654;</button>
+</div>
+
+
+
 <script>
+  function redirectToBrand(brand) {
+    window.location.href = `/mobiles/brand/${brand}/`;
+}
   const slides = document.querySelector(".slides");
   const slide = document.querySelectorAll(".slide");
   const prevBtn = document.querySelector(".prev");
