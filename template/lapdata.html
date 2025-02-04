@@ -1,0 +1,57 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block title %}
+<title>AboutMobile</title>
+{% endblock title%} 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/mobiledata.css' %}" />
+{% endblock css %} 
+
+<!-- {% block js %}
+<script src="{% static 'js/mobiledata.js' %}"></script>
+{% endblock js %}  -->
+
+{% block body %}
+<div class="container">
+    {% for i in lapdata %}
+    <div class="mobile-item">
+    
+      <div class="left-div" id="mobile-image">
+        <img src="{{ i.image.url }}" alt="Select a mobile" class="mobile-img" />
+      </div>
+
+      <div class="right-div" id="mobile-info">
+        <h2>{{ i.name }}</h2>
+        <div class="price-info">
+          <span class="price">{{ i.price }}</span>
+          <span class="orig-price"><strike>{{ i.origprice }}</strike></span>
+        </div>
+        <div id="keyfeatures">
+          <h3>Key Features</h3>
+          <h4>Display: {{ i.display }}</h4>
+          <h4>Memory: {{ i.memory }}</h4>
+          <h4>Processor: {{ i.processor }}</h4>
+          <h4>OS: {{ i.os }}</h4>
+        </div>
+        <div class="mainbtn">
+            <button class="addtocart">
+              <a href="{% url 'myapp:cart' %}" id="impact">Add to cart</a>
+            </button>
+            <button class="addtocart">
+                <a href="" id="impact">Buy now</a>
+            </button>
+
+        </div>
+      </div>
+    </div>
+    <div id="overview">
+      <h3>Overview</h3>
+      <p>{{ i.overview }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  
+{% endblock body %}

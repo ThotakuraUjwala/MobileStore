@@ -11,6 +11,8 @@ urlpatterns = [
     path('cart/', cart, name='cart'),
     path('mobiles/<str:brand_name>/', brand_view, name='brand_mobiles'),
     path('mobiles/brand/<str:brand_name>/', brand_mobiles_view, name='brand_mobiles'),
+    path('laptopdata/<int:id>', lapdataview, name='lapdata'),
+
     
 ]
 

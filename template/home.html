@@ -80,7 +80,7 @@
   <button class="scroll-btn left" id="scrollLeft" onclick="moveProducts('left')">&#9664;</button>
   <div class="product-container" id="productContainer">
     <!-- Product Cards -->
-    {% for i in offerdata %}
+    {% for i in moboff %}
     <div class="product-card">
       <div class="discount-badge">{{i.off}}% off</div>
       <img src="{{i.img.url}}" alt="Samsung A35">
@@ -96,7 +96,39 @@
   <button class="scroll-btn right" id="scrollRight" onclick="moveProducts('right')">&#9654;</button>
 </div>
 
+<h1 id="best">Best Selling Laptops</h1>
 
+<div class="phone-container">
+  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <div class="phone">
+    {% for i in bestlap %}
+    <a href="{% url 'myapp:lapdata' i.id %}" style="text-decoration: none">
+      <div class="inphone">
+        <div class="phnimg">
+          <img src="{{i.image.url}}" alt="phone Image" />
+        </div>
+        <div class="inphone1">
+          <h3>{{i.name}}</h3>
+          <span style="color: aquamarine; margin-top: 2vw">{{i.price}}</span><span>
+            <strike class="discount" style="color: grey">{{i.origprice}}</strike></span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+</div>
+
+
+<h1 id="best">Shop Laptops by Brand</h1>
+<div class="brand-container">
+    {% for brand in brands %}
+    <div class="brand" onclick="redirectToBrand('{{ brand.name|lower }}')">
+        <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+        <!-- <div class="brand-name">{{ brand.name }}</div> -->
+    </div>
+    {% endfor %}
+</div>
 
 <script>
   function redirectToBrand(brand) {

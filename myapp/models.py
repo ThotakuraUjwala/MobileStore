@@ -41,6 +41,23 @@ class Offer(models.Model):
     off_price=models.IntegerField()
     old_price=models.IntegerField()
 
+class laptops(models.Model):
+    image=models.ImageField(upload_to='media/')
+    name=models.CharField(max_length=100)
+    price=models.IntegerField()
+    origprice=models.IntegerField(null=True)  # Make this nullable
+    dispaly=models.CharField(max_length=100, null=True)
+    memory=models.CharField(max_length=100, null=True)
+    processor=models.CharField(max_length=100,null=True)
+    os=models.CharField(max_length=100,null=True)
+    overview=models.TextField(max_length=3000, null=True)
+    is_bestselling=models.BooleanField(null=True, default=False)
+    is_deals=models.BooleanField(null=True, default=False)
+    brand=models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True)  # Ensure this links to Brand
+    discount=models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True)
+    emi_price=models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    delivery_date=models.DateField(null=True, blank=True)
+
 
 
 

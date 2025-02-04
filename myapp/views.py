@@ -5,7 +5,10 @@ def home(request):
     slidesdata = Slides.objects.all()
     bestselling = mobiles.objects.filter(is_bestselling=True)
     brands = Brand.objects.all()
-    return render(request, 'home.html', {'slidesdata': slidesdata, 'bestselling': bestselling, 'brands': brands})
+    offerdata=Offer.objects.all()
+    bestlap=laptops.objects.filter(is_bestselling=True)
+    lapoff=laptops.objects.filter(is_deals=True)
+    return render(request, 'home.html', {'slidesdata': slidesdata, 'bestselling': bestselling, 'brands': brands,'bestlap':bestlap,'lapoff':lapoff,'moboff':offerdata})
 
 def brand_view(request, brand_name):
     brand = Brand.objects.get(name__iexact=brand_name)
@@ -16,6 +19,10 @@ def mobiledataview(request, id):
     mobiledata = [mobiles.objects.get(id=id)]
     return render(request, 'mobiledata.html', {'mobiledata': mobiledata})
 
+
+def lapdataview(request, id):
+    lapdata = [mobiles.objects.get(id=id)]
+    return render(request, 'lapdata.html', {'lapdata': lapdata})
 
 def allmobiles(request):
     data = mobiles.objects.all()
