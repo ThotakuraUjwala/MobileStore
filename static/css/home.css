@@ -9,15 +9,16 @@ body {
 }
 
 #best {
-  /* text-align: center; */
+  width: 100%;
   margin: 20px 20px;
   color: white;
 }
 
 .phone-container {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   overflow: hidden;
   position: relative;
 }
@@ -175,12 +176,29 @@ a {
 
 /* ---brands--- */
 .brand-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping to the next line */
+  overflow-x: auto; /* Enables horizontal scrolling if needed */
+  gap: 20px; /* Adjust the gap between logos */
+  padding: 20px;
+  white-space: nowrap; /* Ensures items stay in a single line */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.brand-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+}
+
+/* .brand-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
     padding: 20px;
-}
+} */
 
 .brand {
     width: 120px; /* Increased for better touch support */
@@ -210,9 +228,9 @@ a {
 }
 
 /* RESPONSIVE STYLES */
-@media (max-width: 1024px) {
+@media (max-width: 1020px) {
     .brand-container {
-        gap: 15px; /* Reduce gap for smaller screens */
+        gap: 10px; /* Reduce gap for smaller screens */
     }
     .brand {
         width: 100px;
@@ -248,7 +266,7 @@ a {
         align-items: center;
     }
     .brand {
-        width: 80px;
+        width: 100px;
     }
     .brand img {
         max-width: 60px;
@@ -260,6 +278,7 @@ a {
 }
 
   .header {
+    width: 100%;
     text-align: center;
     padding: 20px;
     background-color: grey;
@@ -279,6 +298,7 @@ a {
     align-items: center;
     position: relative;
     padding: 20px;
+    width: 100%;
   }
   .scroll-btn {
     background-color: #ff5722;

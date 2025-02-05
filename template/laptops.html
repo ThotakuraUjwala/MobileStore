@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Mobiles</title>
+{% endblock title%}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/allmobiles.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script src=""></script>
+{% endblock js %}
+
+{% block body %}
+<div class="container">
+    {% for i in alldata %}
+    <div class="mobile-item">
+      <a href="{% url 'myapp:lapdata' i.id %}">
+        <div class="left-div" id="mobile-image">
+          <img src="{{ i.image.url }}" alt="Select a laptop" class="mobile-img" />
+        </div>
+      </a>
+
+      <div class="right-div" id="mobile-info">
+        <h2>{{ i.name }}</h2>
+        <div class="price-info">
+          <span class="price">{{ i.price }}</span>
+          <span class="orig-price"><strike>{{ i.origprice }}</strike></span>
+        </div>
+        <div id="keyfeatures">
+          <h4>Display: {{ i.display }}</h4>
+          <h4>OS: {{ i.os }}</h4>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

@@ -10,6 +10,9 @@ class slidesAdmin(admin.ModelAdmin):
 class BrandAdmin(admin.ModelAdmin):
     list_display = ['name', 'logo']
 
+class lapBrandAdmin(admin.ModelAdmin):
+    list_display = ['name', 'logo']
+
 class offerAdmin(admin.ModelAdmin):
     list_display=['off','img','name','off_price','old_price']
 
@@ -21,4 +24,5 @@ admin.site.register(Slides, slidesAdmin)
 admin.site.register(mobiles, mobilesAdmin)
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(laptops,laptopsAdmin)
+admin.site.register(lapBrand, lapBrandAdmin)
 
