@@ -63,7 +63,9 @@ def accessories(request):
     accessories_data = Accessories.objects.all()  # Retrieve all accessories from the database
     return render(request, 'accessories.html', {'accessories_data': accessories_data})
 
-
+def accessoriesview(request, id):
+    accessoriesdata = [Accessories.objects.get(id=id)]
+    return render(request, 'accessoriesdata.html', {'accessoriesdata': accessoriesdata})
 
 
 

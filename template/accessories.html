@@ -13,9 +13,11 @@
 <div class="container">
     {% for i in accessories_data %}
     <div class="accessory-item">
-        <div class="left-div">
-            <img src="{{ i.image.url }}" alt="Accessory Image" class="accessory-img" />
-        </div>
+        <a href="{% url 'myapp:accessoriesdata' i.id %}">
+            <div class="left-div">
+                <img src="{{ i.image.url }}" alt="Accessory Image" class="accessory-img" />
+            </div>
+        </a>
         <div class="right-div">
             <h2>{{ i.name }}</h2>
             <p>{{ i.description }}</p>
