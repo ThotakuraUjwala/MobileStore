@@ -1,48 +1,54 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
 body {
     width: 100%;
     background-color: black;
-    color: white;
 }
 
 .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Enable wrapping for smaller screens */
     gap: 20px;
     padding: 20px;
+    background-color: black;
+    color: white;
     max-width: 80%;
     margin: auto;
 }
 
-.accessory-item {
+.mobile-item {
+    align-items: center;
+    justify-content: flex-start; /* Keep content aligned to the left */
     display: flex;
     gap: 20px;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: white;
     width: 100%;
     margin-bottom: 30px;
+    /* border: 2px solid rgba(128, 128, 128, 0.204); */
 }
 
 .left-div {
     flex: 1;
-    max-width: 50%;
+    max-width: 50%; /* Adjust max-width for the image container */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.accessory-img {
+.mobile-img {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px; /* Adjust max-width for image on small screens */
     height: auto;
     object-fit: cover;
     border-radius: 8px;
+    background-color: black;
 }
 
 .right-div {
@@ -50,11 +56,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: flex-start;
+    align-items: flex-start; /* Align text left */
 }
 
 .right-div h2 {
+    margin: 0;
     font-size: 2rem;
+    color: white;
 }
 
 .price-info {
@@ -74,13 +82,98 @@ body {
     color: grey;
 }
 
+/* Responsive Adjustments */
 @media screen and (max-width: 768px) {
     .container {
-        flex-direction: column;
+        flex-direction: column; /* Stack items vertically for small devices */
+        gap: 10px;
     }
 
-    .accessory-item {
-        flex-direction: row;
+    .mobile-item {
+        flex-direction: row; /* Keep image and text side by side */
         align-items: center;
+    }
+
+    .left-div, .right-div {
+        max-width: 50%; /* Keep image and text in equal space */
+        text-align: left; /* Align text left */
+    }
+
+    .mobile-img {
+        min-width: 200px; /* Prevent the image from shrinking too much */
+    }
+
+    .right-div h2 {
+        font-size: 1.8rem;
+    }
+
+    .price {
+        font-size: 1.5rem;
+    }
+
+    .orig-price {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .right-div h2 {
+        font-size: 1.5rem;
+    }
+
+    .price {
+        font-size: 1.3rem;
+    }
+
+    .orig-price {
+        font-size: 1.1rem;
+    }
+
+    .mobile-img {
+        max-width: 200px; /* Adjust image size for very small screens */
+        border-radius: 6px;
+    }
+}
+
+.mainbtn {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.addtocart {
+    background-color: aquamarine;
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addtocart a {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .mainbtn {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .addtocart {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .addtocart {
+        font-size: 1rem;
+        padding: 10px 20px;
     }
 }

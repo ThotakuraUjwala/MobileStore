@@ -4,7 +4,7 @@
 
 {% block title %}
 <title>AboutMobile</title>
-{% endblock title%} 
+{% endblock title%}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/mobiledata.css' %}" />
@@ -18,7 +18,6 @@
 <div class="container">
     {% for i in mobiledata %}
     <div class="mobile-item">
-    
       <div class="left-div" id="mobile-image">
         <img src="{{ i.image.url }}" alt="Select a mobile" class="mobile-img" />
       </div>

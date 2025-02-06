@@ -30,8 +30,9 @@ body {
     color: white;
     width: 100%;
     margin-bottom: 30px;
-    align-items: flex-start;
-    border: 2px solid rgba(128, 128, 128, 0.286);
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid rgba(128, 128, 128, 0.286); */
 }
 
 .left-div {
@@ -39,7 +40,7 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    min-width: 50%;
+    max-width: 50%;
 }
 
 .mobile-img {
@@ -133,8 +134,9 @@ body {
         min-width: 150px;
     }
 
-    .right-div h4{
-        font-size: 1.0em;
+    .right-div{
+        /* font-size: 1.0em; */
+        font-size: 10px;
     }
     #overview {
         width: 100%;
@@ -155,6 +157,9 @@ body {
         min-width: 50%;
     }
 
+    .right-div{
+        font-size: 10px;
+    }
     .mobile-img {
         max-width: 100%;
     }

@@ -12,28 +12,30 @@
 
 <div class="container">
     {% for i in accessories_data %}
-    <div class="accessory-item">
-        <a href="{% url 'myapp:accessoriesdata' i.id %}">
-            <div class="left-div">
-                <img src="{{ i.image.url }}" alt="Accessory Image" class="accessory-img" />
-            </div>
-        </a>
-        <div class="right-div">
-            <h2>{{ i.name }}</h2>
-            <!-- <p>{{ i.description }}</p> -->
-            <div class="price-info">
-                <span class="price">${{ i.price }}</span>
-                <span class="orig-price"><strike>${{ i.orginalprice }}</strike></span>
-            </div>
-            {% if i.Newly_lanched %}
-            <span class="new-launch">Newly Launched!</span>
-            {% endif %}
+    <div class="mobile-item">
+      <a href="{% url 'myapp:accessoriesdata' i.id %}">
+        <div class="left-div" id="mobile-image">
+          <img src="{{ i.image.url }}" alt="Select a mobile" class="mobile-img" />
         </div>
+      </a>
+
+      <div class="right-div" id="mobile-info">
+        <h2>{{ i.name }}</h2>
+        <div class="price-info">
+          <span class="price">{{ i.price }}</span>
+          <span class="orig-price"><strike>{{ i.orignalprice }}</strike></span>
+        </div>
+        <!-- <div id="keyfeatures">
+          <h4>Brand: {{ i.Brand }}</h4>
+          <h4>Warrenty: {{ i.warrenty }}</h4>
+          <h4>Launch year: {{ i.lanch_year }}</h4>
+        </div> -->
+      </div>
     </div>
     {% endfor %}
 </div>
 
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
         let items = document.querySelectorAll(".accessory-item");
         items.forEach(item => {
@@ -46,5 +48,5 @@
             });
         });
     });
-</script>
+</script> -->
 {% endblock body %}

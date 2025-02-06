@@ -21,11 +21,6 @@ def brand_mobiles_view(request, brand_name):
     mobiles_list = mobiles.objects.filter(brand=brand)
     return render(request, 'brand_mobiles.html', {'brand': brand, 'mobiles': mobiles_list})
 
-# def brand_laptops_view(request, brand_name):
-#     brand = lapBrand.objects.get(name=brand_name)  # Assuming you have a Brand model
-#     laptops_list = laptops.objects.filter(brand=brand)
-#     return render(request, 'brand_laptops.html', {'brand': brand, 'laptops': laptops_list})
-
 
 def brand_laptops_view(request, brand_name):
     brand = get_object_or_404(lapBrand, name__iexact=brand_name)  # Case-insensitive search
