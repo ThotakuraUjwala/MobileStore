@@ -14,6 +14,8 @@ urlpatterns = [
     path('laptops/',all_laptops,name='all_laptops'),
     path('laptops/<str:brand_name>/', lapbrand_view, name='brand_laptops'),
     path('laptops/brand/<str:brand_name>/', brand_laptops_view, name='brand_laptops'),
+    path('accessories/', accessories, name='accessories'),
+
 
 
 ]

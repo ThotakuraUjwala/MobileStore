@@ -59,5 +59,12 @@ def cart(request):
     cartnum=mobiles.objects.all()
     return render(request, 'cart.html', {'cartnum': cartnum})
 
+def accessories(request):
+    accessories_data = Accessories.objects.all()  # Retrieve all accessories from the database
+    return render(request, 'accessories.html', {'accessories_data': accessories_data})
+
+
+
+
 
 

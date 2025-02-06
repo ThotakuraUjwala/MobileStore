@@ -65,6 +65,18 @@ class laptops(models.Model):
     emi_price=models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     delivery_date=models.DateField(null=True, blank=True)
 
+class Accessories(models.Model):
+    image = models.ImageField(upload_to='accessories/')
+    name = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000, null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    Newly_lanched=models.BooleanField(null=True, default=False)
+    orginalprice=models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
+
+
 
 
 

@@ -19,6 +19,10 @@ class offerAdmin(admin.ModelAdmin):
 class laptopsAdmin(admin.ModelAdmin):
     list_display = ['image', 'name', 'price', 'origprice', 'is_bestselling', 'is_deals', 'brand']
 
+class AccessoriesAdmin(admin.ModelAdmin):
+    list_display = ['name', 'image', 'price','orginalprice','description']
+
+admin.site.register(Accessories, AccessoriesAdmin)
 admin.site.register(Offer,offerAdmin)
 admin.site.register(Slides, slidesAdmin)
 admin.site.register(mobiles, mobilesAdmin)
