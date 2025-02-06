@@ -17,6 +17,7 @@ urlpatterns = [
     path('accessories/', accessories, name='accessories'),
     path('accessoriesdata/<int:id>', accessoriesview, name='accessoriesdata'),
 
+
 ]
 
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import *
 
+
 def home(request):
     slidesdata = Slides.objects.all()
     bestselling = mobiles.objects.filter(is_bestselling=True)
@@ -61,6 +62,9 @@ def accessories(request):
 def accessoriesview(request, id):
     accessoriesdata = [Accessories.objects.get(id=id)]
     return render(request, 'accessoriesdata.html', {'accessoriesdata': accessoriesdata})
+
+
+
 
 
 
