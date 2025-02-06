@@ -20,19 +20,29 @@
 <body>
     <header class="header">
         <div class="logo">Loma.com</div>
+        
         <div class="search-bar">
           <input type="text" placeholder="Search for smartphones, laptops etc">
         </div>
-        <a href="{% url 'myapp:home' %}" style="text-decoration:none;color:white"><div class="home">Home</div></a>
+      
+        <nav class="nav-links">
+          <a href="{% url 'myapp:home' %}" class="nav-item">Home</a>
+          <div class="delivery-time nav-item">Location</div>
+          <a href="{% url 'myapp:cart' %}" class="nav-item">🛒 Cart</a>
+          <span class="login nav-item">Login/Signup</span>
+        </nav>
+      
+        <div class="menu-btn">&#9776;</div> <!-- Hamburger Icon -->
+      </header>
+      
+      <!-- Hidden Sidebar Menu -->
+      <div class="mobile-menu">
+        <a href="{% url 'myapp:home' %}">Home</a>
         <div class="delivery-time">Location</div>
-        <div class="icons">
-          <span>❤️Whislist</span> <!-- Replace with an icon if desired -->
-          <a href="{% url 'myapp:cart' %}" style="text-decoration:none;color:white">
-          <span>🛒Cart</span> <!-- Replace with an icon if desired -->
-          </a>
-          <span class="login">Login/Signup</span>
-        </div>
-    </header>
+        <a href="{% url 'myapp:cart' %}">🛒 Cart</a>
+        <span class="login">Login/Signup</span>
+      </div>
+      
     
       <!-- Category Bar Section -->
       <div class="category-bar">
@@ -101,6 +111,11 @@
             </div>
         </div>
     </footer>
-
+<script>
+    document.querySelector(".menu-btn").addEventListener("click", function() {
+        document.querySelector(".mobile-menu").classList.toggle("active");
+      });
+      
+</script>
 </body>
 </html>
