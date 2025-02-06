@@ -72,6 +72,9 @@ class Accessories(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     Newly_lanched=models.BooleanField(null=True, default=False)
     orginalprice=models.DecimalField(max_digits=10, decimal_places=2)
+    Brand=models.CharField(max_length=20,null=True,)
+    warrenty=models.IntegerField(max_length=2,null=True,)
+    lanch_year=models.IntegerField(max_length=4,null=True,)
 
     def __str__(self):
         return self.name
