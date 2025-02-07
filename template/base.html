@@ -8,7 +8,7 @@
     <title></title>
     {% endblock title %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
+    <script src="{% static 'js/base.js' %}"></script>
     {% block css %}
  
     {% endblock css %}
@@ -22,8 +22,10 @@
         <div class="logo">Loma.com</div>
         
         <div class="search-bar">
-          <input type="text" placeholder="Search for smartphones, laptops etc">
+            <input type="text" id="search" placeholder="Search..." onkeyup="handleKeyPress(event)">
+            <div id="suggestions"></div>
         </div>
+        
       
         <nav class="nav-links">
           <a href="{% url 'myapp:home' %}" class="nav-item">Home</a>

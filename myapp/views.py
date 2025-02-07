@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404
+from django.http import JsonResponse
 from .models import *
 
 
@@ -62,6 +63,26 @@ def accessories(request):
 def accessoriesview(request, id):
     accessoriesdata = [Accessories.objects.get(id=id)]
     return render(request, 'accessoriesdata.html', {'accessoriesdata': accessoriesdata})
+
+
+def search(request):
+    query = request.GET.get("q", "").strip()
+
+    mobile= mobiles.objects.none()  # Instead of []
+    accessorie = Accessories.objects.none()
+    laptop = laptops.objects.none()
+
+    if query:
+        mobile = mobiles.objects.filter(name__icontains=query)
+        accessorie = Accessories.objects.filter(name__icontains=query)
+        laptop = laptops.objects.filter(name__icontains=query)
+
+    return render(request, "search_results.html", {
+        "query": query,
+        "mobile": mobile,
+        "accessorie": accessorie,
+        "laptop": laptop,
+    })
 
 
 

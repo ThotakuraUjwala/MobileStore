@@ -63,27 +63,45 @@ body {
   cursor: pointer;
 }
 
+.search-bar {
+  position: relative;
+  width: 300px;
+}
+
+#suggestions {
+  border: 1px solid #ddd;
+  background: white;
+  width: 200px;
+  position: absolute;
+}
+#suggestions div {
+  padding: 5px;
+  cursor: pointer;
+}
+#suggestions div:hover {
+  background: lightgray;
+}
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .header {
-      padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   .header .logo {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   .header .search-bar {
-      min-width: 120px;
-      max-width: 300px;
+    min-width: 120px;
+    max-width: 300px;
   }
 
   .nav-links {
-      display: flex;
-      font-size: 0.9rem;
-      gap: 0.5vw;
-      overflow-x: auto;
-      flex-wrap: nowrap;
+    display: flex;
+    font-size: 0.9rem;
+    gap: 0.5vw;
+    overflow-x: auto;
+    flex-wrap: nowrap;
   }
 }
 
@@ -95,41 +113,40 @@ body {
 
 @media screen and (max-width: 550px) {
   .nav-links {
-      display: none;
+    display: none;
   }
 
   .menu-btn {
-      display: block;
+    display: block;
   }
   .mobile-menu.active {
     display: block;
-}
+  }
 
   .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 50px;
-      right: 10px;
-      background-color: black;
-      width: 180px;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2);
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: black;
+    width: 180px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2);
   }
 
   .mobile-menu a,
   .mobile-menu span {
-      display: block;
-      color: white;
-      padding: 8px;
-      text-decoration: none;
+    display: block;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
   }
 
   .mobile-menu.active {
-      display: block;
+    display: block;
   }
 }
-
 
 /* Category Bar */
 .category-bar {
