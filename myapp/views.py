@@ -11,7 +11,8 @@ def home(request):
     bestlap=laptops.objects.filter(is_bestselling=True)
     lapoff=laptops.objects.filter(is_deals=True)
     lapbrands = lapBrand.objects.all()
-    return render(request, 'home.html', {'slidesdata': slidesdata, 'bestselling': bestselling, 'brands': brands,'bestlap':bestlap,'lapoff':lapoff,'moboff':offerdata,'lapbrands':lapbrands})
+    new_accessories = Accessories.objects.filter(Newly_lanched=True)
+    return render(request, 'home.html', {'slidesdata': slidesdata, 'bestselling': bestselling, 'brands': brands,'bestlap':bestlap,'lapoff':lapoff,'moboff':offerdata,'lapbrands':lapbrands,'new_accessories': new_accessories })
 
 def brand_view(request, brand_name):
     brand = Brand.objects.get(name__iexact=brand_name)
@@ -59,6 +60,9 @@ def cart(request):
 def accessories(request):
     accessories_data = Accessories.objects.all()  # Retrieve all accessories from the database
     return render(request, 'accessories.html', {'accessories_data': accessories_data})
+
+from django.shortcuts import render, get_object_or_404
+from .models import Accessories
 
 def accessoriesview(request, id):
     accessoriesdata = [Accessories.objects.get(id=id)]

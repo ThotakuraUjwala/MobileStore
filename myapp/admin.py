@@ -21,6 +21,8 @@ class laptopsAdmin(admin.ModelAdmin):
 
 class AccessoriesAdmin(admin.ModelAdmin):
     list_display = ['name', 'image', 'price','orginalprice','description']
+    list_filter = ['Newly_lanched']
+    search_fields = ['name']
 
 admin.site.register(Accessories, AccessoriesAdmin)
 admin.site.register(Offer,offerAdmin)

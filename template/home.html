@@ -154,6 +154,26 @@
   <button class="scroll-btn right" id="scrollRight" onclick="moveProducts('right')">&#9654;</button>
 </div>
 
+<div class="carousel-container">
+    <div class="carousel-title">Newly Launched and Trending Accessories</div>
+
+    <button class="scroll-button left-btn" onclick="moveProducts('left')">&#10094;</button>
+    <div class="carousel-wrapper" id="carousel">
+        {% for accessory in new_accessories %}
+        <div class="carousel-item">
+            <img src="{{ accessory.image.url }}" alt="{{ accessory.name }}">
+            <p>{{ accessory.name }}</p>
+            <p class="price">₹ {{ accessory.price }} 
+                <span class="discount-price">₹ {{ accessory.orginalprice }}</span>
+            </p>
+        </div>
+        {% empty %}
+        <p>No newly launched accessories available.</p>
+        {% endfor %}
+    </div>
+    <button class="scroll-button right-btn" onclick="moveProducts('right')">&#10095;</button>
+</div>
+
 
 <script>
   function redirectToBrand(brand) {
@@ -234,6 +254,15 @@ function redirectTolapBrand(brand) {
       setTimeout(jumpToRealSlide, 500); // Delay for transition
     }
   }, 5000);
+
+  // newly_lanched
+  function moveProducts(direction) {
+    const container = document.querySelector('#carousel');
+    const scrollAmount = 300; // Adjust as per required scroll step
+    const offset = direction === 'left' ? -scrollAmount : scrollAmount;
+    container.scrollBy({ left: offset, behavior: 'smooth' });
+}
+
 </script>
 
 {% endblock body %}
