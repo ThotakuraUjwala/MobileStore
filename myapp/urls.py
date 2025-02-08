@@ -16,7 +16,7 @@ urlpatterns = [
     path('laptops/brand/<str:brand_name>/', brand_laptops_view, name='brand_laptops'),
     path('accessories/', accessories, name='accessories'),
     path('accessoriesdata/<int:id>', accessoriesview, name='accessoriesdata'),
-    path("search-results/", search, name="search_results")
+    path("search-results/", search, name="search_results"),
 
 
 ]
