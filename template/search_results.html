@@ -1,116 +1,133 @@
 {% extends 'base.html' %}
 
-<!-- {% block head %}
+{% load static %} 
 
-{% endblock head %} -->
+{% block title %}
+<title>Results</title>
+{% endblock title%} 
 {% block body %}
 <div class="product">
-<h2 style="font-size:2rem">Search Results for "{{ query }}"</h2>
-<br>
-{% if mobile %}
-<h3>Mobiles</h3>
-<div class="product-grid">
-  {% for mob in mobile %}
-  <div class="product-card">
-    <a href="{% url 'myapp:mobiledata' mob.id %}">
-      <img src="{{ mob.image.url }}" alt="{{ mobile.name }}" />
-      <h3>{{ mob.name }}</h3>
-    </a>
-    <p>₹{{ mob.price }}</p>
+  <h2 style="font-size: 2rem">Search Results for "{{ query }}"</h2>
+  <br/>
+  {% if mobile %}
+  <h3>Mobiles</h3>
+  <div class="product-grid">
+    {% for mob in mobile %}
+    <div class="product-card">
+      <a href="{% url 'myapp:mobiledata' mob.id %}">
+        <img src="{{ mob.image.url }}" alt="{{ mobile.name }}" />
+        <h3>{{ mob.name }}</h3>
+      </a>
+      <p>₹{{ mob.price }}</p>
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
-{% endif %} 
-
-{% if accessorie %}
-<h3>Accessories</h3>
-<div class="product-grid">
-  {% for accessory in accessorie %}
-  <div class="product-card">
-    <a href="{% url 'myapp:accessoriesdata' accessory.id %}">
-      <img src="{{ accessory.image.url }}" alt="{{ accessory.name }}" />
-      <h3>{{ accessory.name }}</h3>
-    </a>
-    <p>₹{{ accessory.price }}</p>
+  {% endif %} {% if accessorie %}
+  <h3>Accessories</h3>
+  <div class="product-grid">
+    {% for accessory in accessorie %}
+    <div class="product-card">
+      <a href="{% url 'myapp:accessoriesdata' accessory.id %}">
+        <img src="{{ accessory.image.url }}" alt="{{ accessory.name }}" />
+        <h3>{{ accessory.name }}</h3>
+      </a>
+      <p>₹{{ accessory.price }}</p>
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
-{% endif %} 
-
-{% if laptop %}
-<h3>Laptops</h3>
-<div class="product-grid">
-  {% for lap in laptop %}
-  <div class="product-card">
-    <a href="{% url 'myapp:lapdata' lap.id %}">
-      <img src="{{ lap.image.url }}" alt="{{ laptop.name }}" />
-      <h3>{{ lap.name }}</h3>
-    </a>
-    <p>₹{{ lap.price }}</p>
+  {% endif %} {% if laptop %}
+  <h3>Laptops</h3>
+  <div class="product-grid">
+    {% for lap in laptop %}
+    <div class="product-card">
+      <a href="{% url 'myapp:lapdata' lap.id %}">
+        <img src="{{ lap.image.url }}" alt="{{ laptop.name }}" />
+        <h3>{{ lap.name }}</h3>
+      </a>
+      <p>₹{{ lap.price }}</p>
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
-{% endif %} 
-
-{% if not mobile and not accessorie and not laptop %}
-<p>No results found.</p>
-{% endif %}
+  {% endif %} 
+  {% if not mobile and not accessorie and not laptop %}
+  <p class="no-results">No results found.</p>
+    {% endif %}
 </div>
 
 <style>
-    .product {
-        margin: 2vh;
-        width: 100%;
-        color: white;
-        display: flex;
-        flex-direction: column;
-    }
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  body {
+    width: 100%;
+  }
+  .product {
+    margin-top: 5vh; /* Space below the header */
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh; /* Ensure a consistent height even when empty */
+}
 
-    a {
-        text-decoration: none;
-        color: white;
-    }
+h2 {
+    margin-bottom: 20px; /* Spacing below the h2 */
+    text-align: center;
+}
 
-    .product-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        margin:2vh;
-    }
+.no-results {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ff4d4d; /* Red color for visibility */
+    margin-top: 20px;
+}
 
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 2vh;
+  }
+
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Mobile view */
+  @media (max-width: 768px) {
     .product-card {
-        border: 1px solid #ddd;
-        padding: 10px;
-        width: 200px;
-        text-align: center;
-        box-sizing: border-box;
+      width: 40%;
     }
+  }
 
-    .product-card img {
-        width: 100%;
-        height: auto;
+  /* Tablet view */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .product-card {
+      width: 40%;
     }
+  }
 
-    /* Mobile view */
-    @media (max-width: 768px) {
-        .product-card {
-            width: 45%;
-        }
+  /* Desktop view */
+  @media (min-width: 1025px) {
+    .product-card {
+      width: 22%;
     }
-
-    /* Tablet view */
-    @media (max-width: 1024px) and (min-width: 769px) {
-        .product-card {
-            width: 30%;
-        }
-    }
-
-    /* Desktop view */
-    @media (min-width: 1025px) {
-        .product-card {
-            width: 22%;
-        }
-    }
+  }
 </style>
 {% endblock body %}

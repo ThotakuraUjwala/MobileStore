@@ -1,6 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse
 from .models import *
+from django.shortcuts import render, redirect
+
 
 
 def home(request):
@@ -85,9 +87,7 @@ def search(request):
     })
 
 
-
-
-
-
-
-
+def home(request):
+    if request.user.is_authenticated:
+        return render(request, 'home.html')  # Authenticated user's home page
+    return redirect('login')  # Redirect unauthenticated users to login

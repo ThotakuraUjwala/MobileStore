@@ -65,22 +65,34 @@ body {
 
 .search-bar {
   position: relative;
+  display: flex;
+  align-items: center;
+  /* border: 2px solid #ccc; */
+  border-radius: 5px;
   width: 300px;
+  padding: 5px;
+}
+
+#search {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 5px;
+}
+
+#mic-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 #suggestions {
-  border: 1px solid #ddd;
-  background: white;
-  width: 200px;
-  position: absolute;
-}
-#suggestions div {
+  margin-top: 5px;
+  /* border: 1px solid #ccc; */
   padding: 5px;
-  cursor: pointer;
 }
-#suggestions div:hover {
-  background: lightgray;
-}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .header {

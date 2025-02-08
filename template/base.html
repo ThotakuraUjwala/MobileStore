@@ -20,7 +20,6 @@
 <body>
     <header class="header">
         <div class="logo">Loma.com</div>
-        
         <div class="search-bar">
             <input type="text" id="search" placeholder="Search..." onkeyup="handleKeyPress(event)">
             <div id="suggestions"></div>
@@ -31,7 +30,7 @@
           <a href="{% url 'myapp:home' %}" class="nav-item">Home</a>
           <a class="delivery-time nav-item" id="openLocationModal">Location</a>
           <a href="{% url 'myapp:cart' %}" class="nav-item">🛒 Cart</a>
-          <span class="login nav-item">Login/Signup</span>
+          <a class="login nav-item" href="{% url 'myapp:cart' %}">Login/Signup</a>
         </nav>
       
         <div class="menu-btn">&#9776;</div> <!-- Hamburger Icon -->
