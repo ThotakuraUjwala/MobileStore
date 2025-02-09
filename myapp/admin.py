@@ -20,7 +20,7 @@ class laptopsAdmin(admin.ModelAdmin):
     list_display = ['image', 'name', 'price', 'origprice', 'is_bestselling', 'is_deals', 'brand']
 
 class AccessoriesAdmin(admin.ModelAdmin):
-    list_display = ['name', 'image', 'price','orginalprice','description']
+    list_display = ['name', 'image', 'price','orginalprice','Brand']
     list_filter = ['Newly_lanched']
     search_fields = ['name']
 

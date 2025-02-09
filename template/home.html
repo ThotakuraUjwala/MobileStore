@@ -71,30 +71,27 @@
     {% endfor %}
 </div>
 
-<!-- <div class="header"> -->
-  <h1 id="best">Hurry Up! Get Up to 30% Off</h1>
-  <div class="timer">01 Days</div>
-<!-- </div> -->
-<div class="scroll-container">
-  <button class="scroll-btn left" id="scrollLeft" onclick="moveProducts('left')">&#9664;</button>
-  <div class="product-container" id="productContainer">
-    <!-- Product Cards -->
+
+<h1 id="best">Hurry Up! Get Up to 30% Off</h1>
+<div class="phone-container">
+  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <div class="phone">
     {% for i in moboff %}
     <a href="{% url 'myapp:mobiledata' i.id %}" style="text-decoration: none">
-    <div class="product-card">
-      <div class="discount-badge">{{i.off}}% off</div>
-      <img src="{{i.img.url}}" alt="Samsung A35">
-      <div class="product-name">{{i.name}}</div>
-      <div class="product-price">
-        <span>₹ {{i.off_price}}</span> <span class="old-price">₹ {{i.old_price}}</span>
+      <div class="inphone">
+        <div class="phnimg">
+          <img src="{{i.img.url}}" alt="phone Image" />
+        </div>
+        <div class="inphone1">
+          <h3>{{i.name}}</h3>
+          <span style="color: aquamarine; margin-top: 2vw">{{i.off_price}}</span><span class="old-price">₹ {{i.old_price}}</span>
+        </div>
+        <!-- <button class="add-to-cart">+ Add to Cart</button> -->
       </div>
-      <button class="add-to-cart">+ Add to Cart</button>
-    </div>
     </a>
     {% endfor %}
-    <!-- Add more product cards as needed -->
   </div>
-  <button class="scroll-btn right" id="scrollRight" onclick="moveProducts('right')">&#9654;</button>
+  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
 </div>
 
 <h1 id="best">Best Selling Laptops</h1>
@@ -130,57 +127,51 @@
     {% endfor %}
 </div>
 
-<!-- <div class="header"> -->
-  <h1 id="best">Hurry Up! Get Up to 30% Off</h1>
-  <div class="timer">01 Days</div>
-<!-- </div> -->
-<div class="scroll-container">
-  <button class="scroll-btn left" id="scrollLeft" onclick="moveProducts('left')">&#9664;</button>
-  <div class="product-container" id="productContainer">
-    <!-- Product Cards -->
+
+<h1 id="best">Hurry Up! Get Up to 30% Off</h1>
+<div class="phone-container">
+  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <div class="phone">
     {% for i in lapoff %}
     <a href="{% url 'myapp:lapdata' i.id %}" style="text-decoration: none">
-    <div class="product-card">
-      <div class="discount-badge"></div>
-      <img src="{{i.image.url}}" alt="img">
-      <div class="product-name">{{i.name}}</div>
-      <div class="product-price">
-        <span>₹ {{i.price}}</span> <span class="old-price">₹ {{i.origprice}}</span>
+      <div class="inphone">
+        <div class="phnimg">
+          <img src="{{i.image.url}}" alt="phone Image" />
+        </div>
+        <div class="inphone1">
+          <h3>{{i.name}}</h3>
+          <span style="color: aquamarine; margin-top: 2vw">{{i.price}}</span><span class="old-price">₹ {{i.origprice}}</span>
+        </div>
+        <!-- <button class="add-to-cart">+ Add to Cart</button> -->
       </div>
-      <button class="add-to-cart">+ Add to Cart</button>
-    </div>
     </a>
     {% endfor %}
-    <!-- Add more product cards as needed -->
   </div>
-  <button class="scroll-btn right" id="scrollRight" onclick="moveProducts('right')">&#9654;</button>
+  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
 </div>
 
-
-<h1 id="new">Newly launched and Trending Accessories</h1>
-<div class="scroll-container">
-  <button class="scroll-btn left" id="scrollLeft" onclick="moveProducts('left')">&#9664;</button>
-  <div class="product-container" id="productContainer">
-    <!-- Product Cards -->
+<h1 id="best">Newly launched and Trending Accessories</h1>
+<div class="phone-container">
+  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <div class="phone">
     {% for i in new_accessories %}
     <a href="{% url 'myapp:accessoriesdata' i.id %}" style="text-decoration: none">
-    <div class="product-card">
-      <div class="discount-badge"></div>
-      <img src="{{i.image.url}}" alt="img">
-      <div class="product-name">{{i.name}}</div>
-      <div class="product-price">
-        <span>₹ {{i.price}}</span> 
+      <div class="inphone">
+        <div class="phnimg">
+          <img src="{{i.image.url}}" alt="phone Image" />
+        </div>
+        <div class="inphone1">
+          <h3>{{i.name}}</h3>
+          <span style="color: aquamarine; margin-top: 2vw">{{i.price}}</span><span>
+        </div>
       </div>
-    </div>
     </a>
     {% empty %}
         <p>No newly launched accessories available.</p>
     {% endfor %}
-    <!-- Add more product cards as needed -->
   </div>
-  <button class="scroll-btn right" id="scrollRight" onclick="moveProducts('right')">&#9654;</button>
+  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
 </div>
-
 
 
 <script>
