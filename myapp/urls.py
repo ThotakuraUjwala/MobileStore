@@ -18,6 +18,9 @@ urlpatterns = [
     path('accessories/', accessories, name='accessories'),
     path('accessoriesdata/<int:id>', accessoriesview, name='accessoriesdata'),
     path("search-results/", search, name="search_results"),
+    path('signup/', signup_view, name='signup'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 
 
 ]

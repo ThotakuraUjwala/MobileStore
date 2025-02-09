@@ -1,8 +1,17 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from .models import *
 from django.shortcuts import render, redirect
-
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import SignupForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 def home(request):
@@ -63,8 +72,6 @@ def accessories(request):
     accessories_data = Accessories.objects.all()  # Retrieve all accessories from the database
     return render(request, 'accessories.html', {'accessories_data': accessories_data})
 
-from django.shortcuts import render, get_object_or_404
-from .models import Accessories
 
 def accessoriesview(request, id):
     accessoriesdata = [Accessories.objects.get(id=id)]
@@ -91,7 +98,48 @@ def search(request):
     })
 
 
-def home(request):
-    if request.user.is_authenticated:
-        return render(request, 'home.html')  # Authenticated user's home page
-    return redirect('login')  # Redirect unauthenticated users to login
+def signup_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        confirm_password = request.POST["confirm_password"]
+
+        # Check if passwords match
+        if password != confirm_password:
+            return render(request, "signup.html", {"error": "Passwords do not match"})
+
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            return render(request, "signup.html", {"error": "User account already exists"})
+
+        # Create new user
+        user = User.objects.create_user(username=username, password=password)
+        user.save()
+
+        return redirect("myapp:login")  # Redirect to login after successful signup
+
+    return render(request, "signup.html")
+
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect("myapp:home")  # Redirect to home page
+        else:
+            return render(request, "login.html", {"error": "Invalid username or password"})
+
+    return render(request, "login.html")
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("myapp:home")  # Redirect to home after logout
+
+
+

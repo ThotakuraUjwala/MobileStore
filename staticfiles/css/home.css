@@ -1,0 +1,522 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+}
+
+#best {
+  width: 100%;
+  margin: 20px 20px;
+  color: white;
+}
+
+.phone-container {
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  overflow: hidden;
+  position: relative;
+}
+
+.phone {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.phone::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+
+.inphone {
+  background-color: rgba(128, 128, 128, 0.303);
+  color: white;
+  padding: 20px;
+  width: 250px;
+  min-width: 200px;
+  max-width: 250px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-height: 350px;
+}
+
+.inphone:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.inphone img {
+  max-width: 100%;
+  max-height: 150px;
+  border-radius: 5px;
+  margin-bottom: 1.5vh;
+}
+.inphone1 span {
+  font-size: 30px;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .inphone {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .inphone {
+    width: 100%;
+  }
+}
+/* ---sliders--- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.slider {
+  position: relative;
+  max-width: 100%; /* Make it responsive */
+  height: 40vh; /* Fixed height */
+  overflow: hidden;
+  /* border-radius: 20px; */
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Navigation Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.slider .prev {
+  left: 10px;
+}
+
+.slider .next {
+  right: 10px;
+}
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #fff;
+}
+
+/* ---brands--- */
+.brand-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping to the next line */
+  overflow-x: auto; /* Enables horizontal scrolling if needed */
+  gap: 20px; /* Adjust the gap between logos */
+  padding: 20px;
+  white-space: nowrap; /* Ensures items stay in a single line */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.brand-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+}
+
+/* .brand-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 20px;
+} */
+
+.brand {
+    width: 120px; /* Increased for better touch support */
+    text-align: center;
+    cursor: pointer;
+}
+
+.brand img {
+    width: 100%;
+    max-width: 150px;
+    height: 140px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.brand img:hover {
+    transform: scale(1.1);
+}
+
+.brand-name {
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 1020px) {
+    .brand-container {
+        gap: 10px; /* Reduce gap for smaller screens */
+    }
+    .brand {
+        width: 100px;
+    }
+    .brand img {
+        max-width: 80px;
+        height: 80px;
+    }
+    .brand-name {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brand-container {
+        gap: 10px;
+    }
+    .brand {
+        width: 90px;
+    }
+    .brand img {
+        max-width: 80px;
+        height: 80px;
+    }
+    .brand-name {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-container {
+        flex-direction: row; /* Stack brands vertically on very small screens */
+        align-items: center;
+    }
+    .brand {
+        width: 100px;
+    }
+    .brand img {
+        max-width: 60px;
+        height: 60px;
+    }
+    .brand-name {
+        font-size: 10px;
+    }
+}
+
+  .header {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    /* background-color: grey; */
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+  }
+  .header .timer {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+  }
+  .scroll-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    width: 100%;
+  }
+  .scroll-btn {
+    background-color: rgba(0, 0, 0, 0.292);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: opacity 0.3s;
+  }
+  .scroll-btn.left {
+    left: 10px;
+  }
+  .scroll-btn.right {
+    right: 10px;
+  }
+  .scroll-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .product-container {
+    display: flex;
+    overflow-x: hidden;
+    gap: 20px;
+    scroll-behavior: smooth;
+    flex-grow: 1;
+  }
+  .product-card {
+    position: relative;
+    flex: 0 0 200px;
+    background-color:rgba(128, 128, 128, 0.307);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    color: white;
+  }
+  .product-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  .discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #d32f2f6d;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .product-name {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  .product-price {
+    font-size: 14px;
+    color: white;
+  }
+  .product-price .old-price {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: grey;
+  }
+  .add-to-cart {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: grey;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: rgba(128, 128, 128, 0.307);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-container .carousel-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.carousel-container .carousel-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.carousel-container .carousel-wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari */
+}
+
+.carousel-container .carousel-item {
+    flex: 0 0 auto;
+    width: 180px;
+    margin-right: 15px;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-container .carousel-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.carousel-container .price {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.carousel-container .discount-price {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 14px;
+}
+
+.carousel-container .scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.292);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-container .scroll-button:hover {
+    background-color: #007bff;
+}
+
+.carousel-container .left-btn {
+    left: 10px;
+}
+
+.carousel-container .right-btn {
+    right: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .carousel-container .carousel-item {
+        width: 150px;
+    }
+
+    .carousel-container .carousel-item img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .carousel-container .scroll-button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 15px;
+    }
+
+    .carousel-container .carousel-item {
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    .carousel-container .carousel-item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .carousel-container .scroll-button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        padding: 10px;
+    }
+
+    .carousel-container .carousel-title {
+        font-size: 20px;
+    }
+
+    .carousel-container .carousel-item {
+        width: 100px;
+        margin-right: 8px;
+    }
+
+    .carousel-container .carousel-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .carousel-container .scroll-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

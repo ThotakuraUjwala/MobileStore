@@ -30,7 +30,14 @@
           <a href="{% url 'myapp:home' %}" class="nav-item">Home</a>
           <a class="delivery-time nav-item" id="openLocationModal">Location</a>
           <a href="{% url 'myapp:cart' %}" class="nav-item">🛒 Cart</a>
-          <a class="login nav-item" href="{% url 'myapp:cart' %}">Login/Signup</a>
+          {% if user.is_authenticated %}
+          <p>Welcome, {{ user.username }}!</p>
+          <a href="{% url 'myapp:logout' %}" style="text-decoration: none;color:white">Logout</a>
+            {% else %}
+          <a href="{% url 'myapp:login' %}">Login</a> | 
+          <a href="{% url 'myapp:signup' %}">Sign Up</a>
+            {% endif %}
+      
         </nav>
       
         <div class="menu-btn">&#9776;</div> <!-- Hamburger Icon -->
@@ -38,13 +45,23 @@
       
       <!-- Hidden Sidebar Menu -->
       <div class="mobile-menu">
+        <button class="close-menu">✖</button>
         <a href="{% url 'myapp:home' %}">Home</a>
         <div class="delivery-time">Location</div>
         <a href="{% url 'myapp:cart' %}">🛒 Cart</a>
-        <span class="login">Login/Signup</span>
-      </div>
-      
     
+        {% if user.is_authenticated %}
+            <p style="color: white; margin-bottom: 5px;">Welcome, {{ user.username }}!</p>
+            <div>
+                <a href="{% url 'myapp:logout' %}" style="text-decoration: none; color: white; font-weight: bold;">Logout</a>
+            </div>
+        {% else %}
+            <a href="{% url 'myapp:login' %}">Login</a>
+            <a href="{% url 'myapp:signup' %}">Sign Up</a>
+        {% endif %}
+    </div>
+    
+
       <!-- Category Bar Section -->
       <div class="category-bar">
             <a href="{% url 'myapp:allmobiles' %}" style="text-decoration:none" class="category-item">
