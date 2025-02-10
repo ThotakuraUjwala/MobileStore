@@ -1,42 +1,44 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
     width: 100%;
     background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
 .container {
     display: flex;
-    flex-wrap: wrap; /* Enable wrapping for smaller screens */
+    flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    background-color: black;
-    color: white;
     max-width: 80%;
     margin: auto;
 }
 
+/* Mobile Card */
 .mobile-item {
-    align-items: center;
-    justify-content: flex-start; /* Keep content aligned to the left */
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 20px;
     border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    color: white;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    background-color: #1a1a1a;
+    border: 2px solid rgba(255, 255, 255, 0.1);
     width: 100%;
-    margin-bottom: 30px;
-    /* border: 2px solid rgba(128, 128, 128, 0.204); */
+    max-width: 600px;
+    margin: auto;
 }
 
+/* Left Side: Image */
 .left-div {
-    flex: 1;
-    max-width: 50%; /* Adjust max-width for the image container */
+    flex: 0.4;  /* Adjusts size, keeping image smaller */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,25 +46,26 @@ body {
 
 .mobile-img {
     width: 100%;
-    max-width: 400px; /* Adjust max-width for image on small screens */
+    max-width: 180px; /* Adjust image size */
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     background-color: black;
 }
 
+/* Right Side: Details */
 .right-div {
-    flex: 1;
+    flex: 0.6;  /* Adjusts size, keeping text area larger */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: flex-start; /* Align text left */
+    gap: 8px;
+    text-align: left;
 }
 
 .right-div h2 {
-    margin: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
+    margin: 0;
 }
 
 .price-info {
@@ -72,84 +75,30 @@ body {
 }
 
 .price {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     color: aquamarine;
     font-weight: bold;
 }
 
 .orig-price {
-    font-size: 1.6rem;
+    font-size: 1rem;
     color: grey;
 }
 
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Stack items vertically for small devices */
-        gap: 10px;
-    }
-
-    .mobile-item {
-        flex-direction: row; /* Keep image and text side by side */
-        align-items: center;
-    }
-
-    .left-div, .right-div {
-        max-width: 50%; /* Keep image and text in equal space */
-        text-align: left; /* Align text left */
-    }
-
-    .mobile-img {
-        min-width: 200px; /* Prevent the image from shrinking too much */
-    }
-
-    .right-div h2 {
-        font-size: 1.8rem;
-    }
-
-    .price {
-        font-size: 1.5rem;
-    }
-
-    .orig-price {
-        font-size: 1.3rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .right-div h2 {
-        font-size: 1.5rem;
-    }
-
-    .price {
-        font-size: 1.3rem;
-    }
-
-    .orig-price {
-        font-size: 1.1rem;
-    }
-
-    .mobile-img {
-        max-width: 200px; /* Adjust image size for very small screens */
-        border-radius: 6px;
-    }
-}
-
+/* Button Styling */
 .mainbtn {
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
+    gap: 10px;
 }
 
 .addtocart {
     background-color: aquamarine;
     color: black;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 10px 15px;
+    font-size: 1rem;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -159,21 +108,70 @@ body {
     color: black;
 }
 
+/* RESPONSIVE DESIGN */
+
+/* Medium Screens (Tablets & Small Laptops) */
 @media screen and (max-width: 768px) {
-    .mainbtn {
-        flex-direction: column;
-        gap: 10px;
+    .container {
+        max-width: 95%;
+    }
+    
+    .mobile-item {
+        flex-direction: row; /* Keep side-by-side layout */
+        max-width: 500px;
     }
 
-    .addtocart {
-        width: 100%;
-        padding: 12px;
+    .mobile-img {
+        max-width: 160px;
+    }
+
+    .right-div h2 {
+        font-size: 1.3rem;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+
+    .orig-price {
+        font-size: 0.9rem;
     }
 }
 
+/* Small Screens (Phones) */
 @media screen and (max-width: 480px) {
-    .addtocart {
+    .mobile-item {
+        flex-direction: row; /* Maintain side-by-side */
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .left-div {
+        flex: 0.4; /* Keep image smaller */
+    }
+
+    .mobile-img {
+        max-width: 140px; /* Reduce image size */
+    }
+
+    .right-div {
+        flex: 0.6; /* Keep text proportionate */
+    }
+
+    .right-div h2 {
+        font-size: 1.2rem;
+    }
+
+    .price {
         font-size: 1rem;
-        padding: 10px 20px;
+    }
+
+    .orig-price {
+        font-size: 0.8rem;
+    }
+
+    .addtocart {
+        font-size: 0.9rem;
+        padding: 8px 12px;
     }
 }
