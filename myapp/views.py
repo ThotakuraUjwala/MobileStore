@@ -13,7 +13,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-
 def home(request):
     slidesdata = Slides.objects.all()
     bestselling = mobiles.objects.filter(is_bestselling=True)
@@ -63,10 +62,6 @@ def allmobiles(request):
 def all_laptops(request):
     data = laptops.objects.all()
     return render(request, 'laptops.html', {'alldata': data})
-
-def cart(request):
-    cartnum=mobiles.objects.all()
-    return render(request, 'cart.html', {'cartnum': cartnum})
 
 def accessories(request):
     accessories_data = Accessories.objects.all()  # Retrieve all accessories from the database
@@ -142,4 +137,31 @@ def logout_view(request):
     return redirect("myapp:home")  # Redirect to home after logout
 
 
+def add_to_cart(request, item_id, category):
+    cart = request.session.get('cart', {})
 
+    # Add item to the cart (or increase quantity)
+    if item_id in cart:
+        cart[item_id]['quantity'] += 1
+    else:
+        cart[item_id] = {'category': category, 'quantity': 1}
+
+    request.session['cart'] = cart  # Save cart in session
+    request.session.modified = True  # Mark session as modified
+
+    messages.success(request, "Item added to cart!")  # Optional message
+    return redirect('myapp:cart')  # Redirect to cart page
+
+def cart_view(request):
+    cart = request.session.get('cart', {})
+    return render(request, 'cart.html', {'cart': cart})
+
+def remove_from_cart(request, item_id):
+    cart = request.session.get('cart', {})
+    
+    # Remove item from cart if it exists
+    if str(item_id) in cart:
+        del cart[str(item_id)]
+        request.session['cart'] = cart  # Save the updated cart in session
+
+    return redirect('cart')  # Redirect back to the cart page
