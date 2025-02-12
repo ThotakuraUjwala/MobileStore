@@ -128,10 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in DB
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Prevent clearing when the browser closes
-SESSION_COOKIE_AGE = 60 * 60 * 24 * 365 * 10  # Set session expiration to 10 years
-SESSION_SAVE_EVERY_REQUEST = True  # Save session every time a request is made
-SESSION_COOKIE_SECURE = False  # Set to True if using HTTPS
 
 

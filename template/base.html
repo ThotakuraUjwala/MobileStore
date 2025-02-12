@@ -49,7 +49,7 @@
         <a href="{% url 'myapp:cart_page' %}">🛒 Cart</a>
     
         {% if user.is_authenticated %}
-            <p style="color: white; margin-bottom: 5px;">Welcome, {{ user.username }}!</p>
+            <p style="color: rgb(20, 220, 207); margin-bottom: 5px;">Welcome, {{ user.username }}!</p>
             <div>
                 <a href="{% url 'myapp:logout' %}" style="text-decoration: none; color: white; font-weight: bold;">Logout</a>
             </div>

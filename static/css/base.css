@@ -105,6 +105,10 @@ body {
   padding: 5px;
 }
 
+.nav-links p{
+  font-size: 25px;
+  color: rgb(20, 220, 207);
+}
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .header {
