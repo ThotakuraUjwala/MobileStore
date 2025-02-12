@@ -13,7 +13,6 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
-
 def home(request):
     slidesdata = Slides.objects.all()
     bestselling = mobiles.objects.filter(is_bestselling=True)
@@ -93,12 +92,6 @@ def search(request):
         "laptop": laptop,
     })
 
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-from django.contrib import messages
-
 def signup_view(request):
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
@@ -176,10 +169,9 @@ def logout_view(request):
     return redirect('myapp:home')
 
 
-
-
 @login_required
 def add_to_cart(request, item_id, category):
+    # Fetch the item based on category
     if category == "mobile":
         item = get_object_or_404(mobiles, id=item_id)
     elif category == "laptop":
@@ -189,44 +181,30 @@ def add_to_cart(request, item_id, category):
     else:
         return redirect('myapp:home')
 
-    # Retrieve or create the cart session
-    cart = request.session.get('cart', {})
+    # Check if item already exists in the cart
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user,
+        category=category,
+        item_id=item_id,
+        defaults={'name': item.name, 'price': float(item.price), 'image': item.image.url if item.image else '', 'quantity': 1}
+    )
 
-    # Item key based on category and ID
-    item_key = f"{category}-{item_id}"
-    
-    if item_key in cart:
-        cart[item_key]['quantity'] += 1
-    else:
-        cart[item_key] = {
-            'name': item.name,
-            'price': float(item.price),
-            'image': item.image.url if item.image else '',
-            'quantity': 1,
-            'category': category
-        }
-
-    # Save the cart back to the session and mark it as modified
-    request.session['cart'] = cart
-    request.session.modified = True
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
 
     return redirect('myapp:cart_page')
+
 
 @login_required
 def cart_page(request):
-    cart = request.session.get('cart', {})
-    return render(request, 'cart.html', {'cart_items': cart})
+    cart_items = CartItem.objects.filter(user=request.user)
+    return render(request, 'cart.html', {'cart_items': cart_items})
+
 
 
 
 @login_required
-def remove_from_cart(request, item_key):
-    cart = request.session.get('cart', {})
-
-    if item_key in cart:
-        del cart[item_key]
-        request.session['cart'] = cart
-        request.session.modified = True  # Ensure session updates
-
+def remove_from_cart(request, category, item_id):
+    CartItem.objects.filter(user=request.user, category=category, item_id=item_id).delete()
     return redirect('myapp:cart_page')
-
