@@ -16,6 +16,9 @@
 
 {% block body %}
 <div class="container">
+    <div id="details">
+        <h1>Know more about your selected product....</h1>
+    </div>
     {% for i in accessoriesdata %}
     <div class="mobile-item">
         <div class="left-div" id="mobile-image">
@@ -36,10 +39,7 @@
             </div>
             <div class="mainbtn">
             <button class="addtocart">
-              <a href="" id="impact">Add to cart</a>
-            </button>
-            <button class="addtocart">
-                <a href="" id="impact">Buy now</a>
+                <a href="{% url 'myapp:add_to_cart' category='accessory' item_id=i.id %}">Add to Cart</a>
             </button>
 
         </div>

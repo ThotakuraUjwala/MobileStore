@@ -1,52 +1,42 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
-
 {% block title %}
     <title>Accessories</title>
-{% endblock title %}
+{% endblock title%}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/accessories.css' %}">
+    <link rel="stylesheet" href="{% static 'css/allmobiles.css' %}">
 {% endblock css %}
-{% block body %}
 
+{% block js %}
+    <script src=""></script>
+{% endblock js %}
+
+{% block body %}
 <div class="container">
+  <div id="shop">
+    <h1>Shop our accessories</h1>
+  </div>
     {% for i in accessories_data %}
+    <a href="{% url 'myapp:accessoriesdata' i.id %}">
     <div class="mobile-item">
-      <a href="{% url 'myapp:accessoriesdata' i.id %}">
         <div class="left-div" id="mobile-image">
           <img src="{{ i.image.url }}" alt="Select a mobile" class="mobile-img" />
         </div>
-      </a>
 
       <div class="right-div" id="mobile-info">
         <h2>{{ i.name }}</h2>
         <div class="price-info">
           <span class="price">{{ i.price }}</span>
-          <span class="orig-price"><strike>{{ i.orignalprice }}</strike></span>
+          <span class="orig-price"><strike>{{ i.originalprice }}</strike></span>
         </div>
         <!-- <div id="keyfeatures">
-          <h4>Brand: {{ i.Brand }}</h4>
-          <h4>Warrenty: {{ i.warrenty }}</h4>
-          <h4>Launch year: {{ i.lanch_year }}</h4>
+          <h4>RAM: {{ i.ram }}</h4>
+          <h4>ROM: {{ i.rom }}</h4>
         </div> -->
       </div>
     </div>
+    </a>
     {% endfor %}
 </div>
-
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let items = document.querySelectorAll(".accessory-item");
-        items.forEach(item => {
-            item.addEventListener("mouseenter", function () {
-                this.style.transform = "scale(1.02)";
-                this.style.transition = "transform 0.3s ease";
-            });
-            item.addEventListener("mouseleave", function () {
-                this.style.transform = "scale(1)";
-            });
-        });
-    });
-</script> -->
 {% endblock body %}

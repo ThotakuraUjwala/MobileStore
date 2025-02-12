@@ -1,6 +1,5 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
 from .models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
@@ -12,6 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+
 
 def home(request):
     slidesdata = Slides.objects.all()
@@ -93,43 +93,78 @@ def search(request):
     })
 
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib import messages
+
 def signup_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        confirm_password = request.POST["confirm_password"]
+        username = request.POST.get("username", "").strip()
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "").strip()
+        confirm_password = request.POST.get("confirm_password", "").strip()
+
+        # Check if fields are empty
+        if not username or not email or not password or not confirm_password:
+            messages.error(request, "All fields are required.")
+            return render(request, "signup.html")
 
         # Check if passwords match
         if password != confirm_password:
-            return render(request, "signup.html", {"error": "Passwords do not match"})
+            messages.error(request, "Passwords do not match.")
+            return render(request, "signup.html")
 
-        # Check if username already exists
-        if User.objects.filter(username=username).exists():
-            return render(request, "signup.html", {"error": "User account already exists"})
+        # Check if username and email already exist
+        if User.objects.filter(username=username, email=email).exists():
+            messages.error(request, "An account with this username and email already exists.")
+            return render(request, "signup.html")
+
+        elif User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists. Please choose another.")
+            return render(request, "signup.html")
+
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already registered. Try logging in.")
+            return render(request, "signup.html")
 
         # Create new user
-        user = User.objects.create_user(username=username, password=password)
+        user = User.objects.create_user(username=username, password=password, email=email)
         user.save()
 
-        return redirect("myapp:login")  # Redirect to login after successful signup
+        messages.success(request, "Account created successfully! Please log in.")
+        return redirect("myapp:login")  # Redirect to login page
 
     return render(request, "signup.html")
 
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get("username", "").strip()
+        email = request.POST.get("email", "").strip()
+        password = request.POST.get("password", "").strip()
+
+        # Validate if all fields are filled
+        if not username or not email or not password:
+            messages.error(request, "All fields are required.")
+            return render(request, "login.html")
+
+        # Check if user exists with username and email
+        if not User.objects.filter(username=username, email=email).exists():
+            messages.error(request, "No account found with this username and email. Please sign up.")
+            return render(request, "login.html")
+
+        # Authenticate user
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
             login(request, user)
             return redirect("myapp:home")  # Redirect to home page
         else:
-            return render(request, "login.html", {"error": "Invalid username or password"})
+            messages.error(request, "Invalid password. Please try again.")
+            return render(request, "login.html")
 
     return render(request, "login.html")
-
 
 
 def logout_view(request):
@@ -137,31 +172,61 @@ def logout_view(request):
     return redirect("myapp:home")  # Redirect to home after logout
 
 
+
+@login_required
 def add_to_cart(request, item_id, category):
-    cart = request.session.get('cart', {})
-
-    # Add item to the cart (or increase quantity)
-    if item_id in cart:
-        cart[item_id]['quantity'] += 1
+    """
+    Adds an item to the session-based cart and redirects to the cart page.
+    """
+    # Get the item based on category
+    if category == "mobile":
+        item = get_object_or_404(mobiles, id=item_id)
+    elif category == "laptop":
+        item = get_object_or_404(laptops, id=item_id)
+    elif category == "accessory":
+        item = get_object_or_404(Accessories, id=item_id)
     else:
-        cart[item_id] = {'category': category, 'quantity': 1}
+        return redirect('myapp:home')
 
-    request.session['cart'] = cart  # Save cart in session
-    request.session.modified = True  # Mark session as modified
-
-    messages.success(request, "Item added to cart!")  # Optional message
-    return redirect('myapp:cart')  # Redirect to cart page
-
-def cart_view(request):
+    # Retrieve the cart from session (or create an empty cart if it doesn't exist)
     cart = request.session.get('cart', {})
-    return render(request, 'cart.html', {'cart': cart})
 
-def remove_from_cart(request, item_id):
+    # Check if the item is already in the cart
+    item_key = f"{category}-{item_id}"
+    if item_key in cart:
+        cart[item_key]['quantity'] += 1
+    else:
+        cart[item_key] = {
+            'name': item.name,
+            'price': float(item.price),  # Convert Decimal to float ✅
+            'image': item.image.url if item.image else '',
+            'quantity': 1,
+            'category': category
+        }
+
+    # Save the updated cart back to the session
+    request.session['cart'] = cart
+    request.session.modified = True  # Ensure changes are saved
+
+    return redirect('myapp:cart_page')  # Redirect to cart page
+
+
+@login_required
+def cart_page(request):
     cart = request.session.get('cart', {})
-    
-    # Remove item from cart if it exists
-    if str(item_id) in cart:
-        del cart[str(item_id)]
-        request.session['cart'] = cart  # Save the updated cart in session
+    return render(request, 'cart.html', {'cart_items': cart})
 
-    return redirect('cart')  # Redirect back to the cart page
+
+@login_required
+def remove_from_cart(request, item_key):
+    """
+    Removes an item from the session-based cart.
+    """
+    cart = request.session.get('cart', {})
+
+    if item_key in cart:
+        del cart[item_key]
+        request.session['cart'] = cart
+        request.session.modified = True  # Ensure session updates
+
+    return redirect('myapp:cart_page')

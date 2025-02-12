@@ -1,45 +1,37 @@
-{% extends 'base.html' %} 
-{% load static %}
+{% extends 'base.html' %}
+{% load static %}  
+
 {% block title %}
-<title>Shopping Cart</title>
+    <title>Shopping Cart</title>
 {% endblock title %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 {% endblock css %}
 
 {% block body %}
-<div class="container">
-    <h2>Your Shopping Cart</h2>
-    
-    {% if cart %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item_id, item in cart.items %}
-                <tr>
-                    <td>{{ item.category }} (ID: {{ item_id }})</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>
-                        <form action="{% url 'remove_from_cart' item_id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Remove</button>
-                        </form>
-                    </td>
-                </tr>
+    <div class="cart-container">
+        <div id="shop">
+            <h1>Your Shopping Cart</h1>
+          </div>        
+          {% if cart_items %}
+            <div class="cart-items">
+                {% for key, item in cart_items.items %}
+                    <div class="cart-item">
+                        <img src="{{ item.image }}" alt="{{ item.name }}" class="cart-img">
+                        <div class="cart-info">
+                            <h3>{{ item.name }}</h3>
+                            <p class="price">₹{{ item.price }}</p>
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <a href="{% url 'myapp:remove_from_cart' key %}" class="remove-btn">Remove</a>
+                        </div>
+                    </div>
                 {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Your cart is empty.</p>
-    {% endif %}
+            </div>
 
-    <!-- <a href="{% url 'checkout' %}">Proceed to Checkout</a> -->
-</div>
+        {% else %}
+        <img src="{% static 'images/cart.png' %}" alt="" id="empty-cartimg">
+        <h4 class="empty-cart"><a href="{% url 'myapp:home' %}">Continue Shopping</a></4>
+        {% endif %}
+    </div>
 {% endblock body %}

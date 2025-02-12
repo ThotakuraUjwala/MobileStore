@@ -16,14 +16,13 @@
 
 {% block body %}
 <div id="main">
-<h2>{{ brand.name }} Phones</h2>
+<h2>{{ brand.name }} mobiles</h2>
     <div class="mobile-container">
         {% for mobile in mobiles %}
+        <a href="{% url 'myapp:mobiledata' mobile.id %}">
         <div class="mobile">
-            <a href="{% url 'myapp:mobiledata' mobile.id %}">
                 <img src="{{ mobile.image.url }}" alt="{{ mobile.name }}">
                 <div class="mobile-name">{{ mobile.name }}</div>
-            </a>
             <div class="price">₹{{ mobile.price }} 
                 {% if mobile.origprice %}
                     <span class="old-price">₹{{ mobile.origprice }}</span>
@@ -35,21 +34,15 @@
             {% if mobile.emi_price %}
                 <div class="emi">EMI starts @ ₹{{ mobile.emi_price }}</div>
             {% endif %}
-            {% if mobile.delivery_date %}
-                <div class="delivery">📦 Delivery by {{ mobile.delivery_date }}</div>
-            {% endif %}
-            <button class="cart-button" onclick="addToCart('{{ mobile.id }}')">🛒 Add to Cart</button>
+            <button class="cart-button">
+                <a href="{% url 'myapp:add_to_cart' category='mobile' item_id=mobile.id %}"> 🛒 Add to Cart</a>
+            </button>
         </div>
         {% empty %}
         <p>No mobiles available for this brand.</p>
+        </a>
         {% endfor %}
     </div>
 </div>
-    <script>
-        function addToCart(mobileId) {
-            alert("Mobile " + mobileId + " added to cart!");
-        }
-        
-    </script>
   
 {% endblock body %}

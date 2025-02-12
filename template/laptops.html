@@ -14,13 +14,15 @@
 
 {% block body %}
 <div class="container">
+  <div id="shop">
+    <h1>Shop our Laptops</h1>
+  </div>
     {% for i in alldata %}
+    <a href="{% url 'myapp:lapdata' i.id %}">
     <div class="mobile-item">
-      <a href="{% url 'myapp:lapdata' i.id %}">
         <div class="left-div" id="mobile-image">
           <img src="{{ i.image.url }}" alt="Select a laptop" class="mobile-img" />
         </div>
-      </a>
 
       <div class="right-div" id="mobile-info">
         <h2>{{ i.name }}</h2>
@@ -34,6 +36,7 @@
         </div>
       </div>
     </div>
+    </a>
     {% endfor %}
 </div>
 {% endblock body %}

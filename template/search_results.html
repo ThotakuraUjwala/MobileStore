@@ -5,47 +5,54 @@
 {% block title %}
 <title>Results</title>
 {% endblock title%} 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock css %}
+
 {% block body %}
 <div class="product">
-  <h2 style="font-size: 2rem">Search Results for "{{ query }}"</h2>
+  <div id="details">
+    <h1>Search results for '{{ query }}'.</h1>
+</div>
   <br/>
   {% if mobile %}
   <h3>Mobiles</h3>
   <div class="product-grid">
     {% for mob in mobile %}
+    <a href="{% url 'myapp:mobiledata' mob.id %}">
     <div class="product-card">
-      <a href="{% url 'myapp:mobiledata' mob.id %}">
         <img src="{{ mob.image.url }}" alt="{{ mobile.name }}" />
-        <h3>{{ mob.name }}</h3>
-      </a>
+        <h2>{{ mob.name }}</h2>
       <p>₹{{ mob.price }}</p>
     </div>
+    </a>
     {% endfor %}
   </div>
   {% endif %} {% if accessorie %}
   <h3>Accessories</h3>
   <div class="product-grid">
     {% for accessory in accessorie %}
+    <a href="{% url 'myapp:accessoriesdata' accessory.id %}">
     <div class="product-card">
-      <a href="{% url 'myapp:accessoriesdata' accessory.id %}">
         <img src="{{ accessory.image.url }}" alt="{{ accessory.name }}" />
-        <h3>{{ accessory.name }}</h3>
-      </a>
+        <h2>{{ accessory.name }}</h2>
       <p>₹{{ accessory.price }}</p>
     </div>
+    </a>
     {% endfor %}
   </div>
   {% endif %} {% if laptop %}
   <h3>Laptops</h3>
   <div class="product-grid">
     {% for lap in laptop %}
+    <a href="{% url 'myapp:lapdata' lap.id %}">
     <div class="product-card">
-      <a href="{% url 'myapp:lapdata' lap.id %}">
         <img src="{{ lap.image.url }}" alt="{{ laptop.name }}" />
-        <h3>{{ lap.name }}</h3>
-      </a>
+        <h2>{{ lap.name }}</h2>
       <p>₹{{ lap.price }}</p>
     </div>
+    </a>
     {% endfor %}
   </div>
   {% endif %} 
@@ -53,81 +60,5 @@
   <p class="no-results">No results found.</p>
     {% endif %}
 </div>
-
-<style>
-  * {
-    margin: 0px;
-    padding: 0px;
-  }
-  body {
-    width: 100%;
-  }
-  .product {
-    margin-top: 5vh; /* Space below the header */
-    width: 100%;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 50vh; /* Ensure a consistent height even when empty */
-}
-
-h2 {
-    margin-bottom: 20px; /* Spacing below the h2 */
-    text-align: center;
-}
-
-.no-results {
-    text-align: center;
-    font-size: 1.5rem;
-    color: #ff4d4d; /* Red color for visibility */
-    margin-top: 20px;
-}
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
-
-  .product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin: 2vh;
-  }
-
-  .product-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  .product-card img {
-    width: 100%;
-    height: auto;
-  }
-
-  /* Mobile view */
-  @media (max-width: 768px) {
-    .product-card {
-      width: 40%;
-    }
-  }
-
-  /* Tablet view */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    .product-card {
-      width: 40%;
-    }
-  }
-
-  /* Desktop view */
-  @media (min-width: 1025px) {
-    .product-card {
-      width: 22%;
-    }
-  }
-</style>
+ 
 {% endblock body %}

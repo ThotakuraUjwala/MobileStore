@@ -5,7 +5,7 @@ from .views import *
 app_name = 'myapp'
 
 urlpatterns = [
-    path('', home, name='home'),  # Use the combined home view for both slides and bestphones
+    path('', home, name='home'),  
     path('mobiledata/<int:id>', mobiledataview, name='mobiledata'),
     path('mobiles/',allmobiles,name='allmobiles'),
     path('mobiles/<str:brand_name>/', brand_view, name='brand_mobiles'),
@@ -20,10 +20,9 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
-    #  path('add-to-cart/<int:item_id>/<str:category>/', add_to_cart, name='add_to_cart'),
-    # path('cart/', cart_view, name='cart'),
-    # path('remove-from-cart/<int:item_id>/', remove_from_cart, name='remove_from_cart'),
-
+    path('add-to-cart/<str:category>/<int:item_id>/', add_to_cart, name='add_to_cart'),
+    path('cart/', cart_page, name='cart_page'),
+    path('remove-from-cart/<str:item_key>/', remove_from_cart, name='remove_from_cart'),
 
 ]
 

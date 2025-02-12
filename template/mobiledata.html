@@ -16,6 +16,9 @@
 
 {% block body %}
 <div class="container">
+  <div id="details">
+    <h1>Know more about your selected product....</h1>
+  </div>
     {% for i in mobiledata %}
     <div class="mobile-item">
       <div class="left-div" id="mobile-image">
@@ -37,13 +40,9 @@
         </div>
         <div class="mainbtn">
             <button class="addtocart">
-              <a href="" id="impact">Add to cart</a>
+              <a href="{% url 'myapp:add_to_cart' category='mobile' item_id=i.id %}" id="impact">Add to Cart</a>
             </button>
-            <button class="addtocart">
-                <a href="" id="impact">Buy now</a>
-            </button>
-            
-
+  
         </div>
       </div>
     </div>

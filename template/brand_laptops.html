@@ -3,7 +3,7 @@
 {% load static %} 
 
 {% block title %}
-<title>Brand_Laptops</title>
+<title>Brand_Mobiles</title>
 {% endblock title%} 
 
 {% block css %}
@@ -16,14 +16,13 @@
 
 {% block body %}
 <div id="main">
-<h2>{{ lapbrand.name }} Laptops</h2>
+<h2>{{ brand.name }} Laptops</h2>
     <div class="mobile-container">
         {% for lap in laptops %}
+        <a href="{% url 'myapp:lapdata' lap.id %}">
         <div class="mobile">
-            <a href="{% url 'myapp:lapdata' lap.id %}">
-                <img src="{{ lap.image.url }}" alt="{{ mobile.name }}">
+                <img src="{{ lap.image.url }}" alt="{{ lap.name }}">
                 <div class="mobile-name">{{ lap.name }}</div>
-            </a>
             <div class="price">₹{{ lap.price }} 
                 {% if lap.origprice %}
                     <span class="old-price">₹{{ lap.origprice }}</span>
@@ -35,21 +34,15 @@
             {% if lap.emi_price %}
                 <div class="emi">EMI starts @ ₹{{ lap.emi_price }}</div>
             {% endif %}
-            {% if lap.delivery_date %}
-                <div class="delivery">📦 Delivery by {{ lap.delivery_date }}</div>
-            {% endif %}
-            <button class="cart-button" onclick="addToCart('{{ mobile.id }}')">🛒 Add to Cart</button>
+            <button class="cart-button">
+                <a href="{% url 'myapp:add_to_cart' category='mobile' item_id=lap.id %}"> 🛒 Add to Cart</a>
+            </button>
         </div>
         {% empty %}
         <p>No laptops available for this brand.</p>
+        </a>
         {% endfor %}
     </div>
 </div>
-    <script>
-        function addToCart(mobileId) {
-            alert("Mobile " + mobileId + " added to cart!");
-        }
-        
-    </script>
   
 {% endblock body %}

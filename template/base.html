@@ -28,11 +28,10 @@
       
         <nav class="nav-links">
           <a href="{% url 'myapp:home' %}" class="nav-item">Home</a>
-          <a class="delivery-time nav-item" id="openLocationModal">Location</a>
-          <a href="" class="nav-item">🛒 Cart</a>
+          <a href="{% url 'myapp:cart_page' %}" class="nav-item">🛒 Cart</a>
           {% if user.is_authenticated %}
-          <p>Welcome, {{ user.username }}!</p>
-          <a href="{% url 'myapp:logout' %}" style="text-decoration: none;color:white">Logout</a>
+          <p>Welcome, {{ user.username }} !</p>
+          <a href="{% url 'myapp:logout' %}" style="text-decoration: none;color:white" class="nav-item">Logout</a>
             {% else %}
           <a href="{% url 'myapp:login' %}" class="nav-item">Login</a> | 
           <a href="{% url 'myapp:signup' %}"class=nav-item>Sign Up</a>
@@ -47,8 +46,7 @@
       <div class="mobile-menu">
         <button class="close-menu">✖</button>
         <a href="{% url 'myapp:home' %}">Home</a>
-        <div class="delivery-time">Location</div>
-        <a href="">🛒 Cart</a>
+        <a href="{% url 'myapp:cart_page' %}">🛒 Cart</a>
     
         {% if user.is_authenticated %}
             <p style="color: white; margin-bottom: 5px;">Welcome, {{ user.username }}!</p>
@@ -67,21 +65,21 @@
             <a href="{% url 'myapp:allmobiles' %}" style="text-decoration:none" class="category-item">
                 <div class="category-item">
                     <img src="{% static 'images/Mobile_logo.jpg' %}" alt="">
-                    <span>Mobiles</span>
+                    <span id="name">Mobiles</span>
                 </div>
             </a>
         
             <a href="{% url 'myapp:accessories' %}" style="text-decoration:none" class="category-item">
                 <div class="category-item">
                     <img src="{% static 'images/accessories_logo.jpg' %}" alt="">
-                    <span>Accessories</span>
+                    <span id="name">Accessories</span>
                 </div>
             </a>
 
             <a href="{% url 'myapp:all_laptops' %}" style="text-decoration:none" class="category-item">
                 <div class="category-item">
                     <img src="{% static 'images/laptops_logo.jpg' %}" alt="">
-                    <span>Laptops</span>
+                    <span id="name">Laptops</span>
                 </div>
             <a
     </div>
@@ -92,7 +90,8 @@
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <img src="{% static 'images/lion.webp' %}" alt="" style="height:60px;width:50px">
+                <!-- <img src="{% static 'images/lion.webp' %}" alt="" style="height:60px;width:50px"> -->
+                <div class="logo">Loma.com</div>
                 <h2>CONNECT WITH US</h2>
                 <div class="social-icons">
                     <a href=""><img src="https://cdn-icons-png.flaticon.com/128/5968/5968756.png" alt="Discord"></a>

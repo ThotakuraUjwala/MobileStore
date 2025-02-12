@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #111;
@@ -5,28 +10,46 @@ body {
     text-align: center;
     margin: 0;
     padding: 20px;
+    width: 100%;
 }
 
 #main {
     width: 100%;
-}
+    width: 90%;
+    line-height: 1.5;
+    border-radius: 25px;
+    /* background-image: linear-gradient(135deg,rgba(128, 128, 128, 0.558),black,rgba(128, 128, 128, 0.453)); */
+    background-image: linear-gradient(135deg,rgba(147, 19, 19, 0.347),black,rgba(128, 128, 128, 0.379));
 
+}
+#main h2{
+    font-family: "Pacifico", cursive;
+    font-size: 50px;
+    font-weight: lighter;
+    background: linear-gradient(120deg,red,blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
 .mobile-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     margin-top: 20px;
+
 }
 
 .mobile {
-    background-color: #222;
+    /* background-color: #222; */
     border-radius: 10px;
     padding: 15px;
     width: 22%; /* Default width for desktops */
     text-align: left;
     position: relative;
     transition: transform 0.3s ease-in-out;
+    background-color: rgba(105, 105, 105, 0.295);
+    
 }
 
 .mobile:hover {
@@ -75,13 +98,8 @@ body {
     color: #ffcc00;
 }
 
-.delivery {
-    font-size: 14px;
-    color: #66ccff;
-}
-
 .cart-button {
-    background-color: #ff6600;
+    background-color: #ff9500be;
     color: white;
     border: none;
     padding: 10px;

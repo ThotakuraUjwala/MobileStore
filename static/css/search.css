@@ -1,0 +1,201 @@
+/* Reset & General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    background: #1a1a1a; /* Dark background for a premium look */
+    color: white;
+}
+
+/* Title & Heading Styles */
+h3 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+@keyframes textZoom {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+#details {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#details h1 {
+    font-size: 3rem;
+    font-weight: lighter;
+    font-family: "Pacifico", cursive;
+    background: linear-gradient(90deg, #153cb1, #b1900c, rgb(140, 35, 14));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textZoom 0.9s ease-in-out;
+}
+
+/* Product Section */
+.product {
+    margin-top: 5vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 50vh;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ff4d4d;
+    margin-top: 20px;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Product Grid */
+.product-grid {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 2vh;
+}
+
+/* Product Card Styling */
+.product-card {
+    background: linear-gradient(135deg,black,rgba(128, 128, 128, 0.489));
+    border-radius: 12px;
+    padding: 15px;
+    width: 300px;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    /* overflow: hidden; */
+    box-shadow: 6px 6px 6px grey;
+    animation: fadeInUp 0.6s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+   
+}
+
+/* Hover Effect */
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+/* Product Card Image */
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: fill;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+
+/* Product Title */
+.product-card h2 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: rgb(220, 150, 8);
+}
+
+/* Price */
+.product-card p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Clickable Card */
+.product-grid a {
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-grid a:hover {
+    transform: scale(1.02);
+}
+
+/* Animation on Load */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive Design */
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .product-card {
+        width: 90%;
+    }
+    #details h1 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Increase Product Card Size for Laptops */
+@media (min-width: 1025px) {
+    .product-card {
+        width: 350px; 
+        height: 420px; 
+    }
+
+    .product-card img {
+        height: 230px; 
+    }
+
+    .product-card h2 {
+        font-size: 1.4rem; 
+        margin-top: 2rem;
+    }
+
+    .product-card p {
+        font-size: 1.1rem; 
+    }
+}
