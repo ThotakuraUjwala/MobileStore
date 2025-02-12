@@ -24,6 +24,9 @@ class AccessoriesAdmin(admin.ModelAdmin):
     list_filter = ['Newly_lanched']
     search_fields = ['name']
 
+class CartItemAdmin(admin.ModelAdmin):
+    list_display=['user','category','item_id','name','price','quantity']
+
 admin.site.register(Accessories, AccessoriesAdmin)
 admin.site.register(Offer,offerAdmin)
 admin.site.register(Slides, slidesAdmin)
@@ -31,4 +34,5 @@ admin.site.register(mobiles, mobilesAdmin)
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(laptops,laptopsAdmin)
 admin.site.register(lapBrand, lapBrandAdmin)
+admin.site.register(CartItem,CartItemAdmin)
 

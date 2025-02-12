@@ -202,9 +202,22 @@ def cart_page(request):
     return render(request, 'cart.html', {'cart_items': cart_items})
 
 
-
-
 @login_required
 def remove_from_cart(request, category, item_id):
-    CartItem.objects.filter(user=request.user, category=category, item_id=item_id).delete()
+    try:
+        # Fetch the specific item (ensuring only one result)
+        cart_item = CartItem.objects.get(user=request.user, category=category, item_id=item_id)
+
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete(using='default')  # Ensure DB commit
+        
+    except CartItem.DoesNotExist:
+        pass  # Ignore if already deleted
+
     return redirect('myapp:cart_page')
+
+
+
