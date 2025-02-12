@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
+
 def home(request):
     slidesdata = Slides.objects.all()
     bestselling = mobiles.objects.filter(is_bestselling=True)
@@ -168,17 +169,17 @@ def login_view(request):
 
 
 def logout_view(request):
-    logout(request)
-    return redirect("myapp:home")  # Redirect to home after logout
+    cart = request.session.get('cart', {})  # Preserve cart
+    logout(request)  # Log out the user
+    request.session['cart'] = cart  # Restore cart after logout
+    request.session.modified = True  # Ensure session updates
+    return redirect('myapp:home')
+
 
 
 
 @login_required
 def add_to_cart(request, item_id, category):
-    """
-    Adds an item to the session-based cart and redirects to the cart page.
-    """
-    # Get the item based on category
     if category == "mobile":
         item = get_object_or_404(mobiles, id=item_id)
     elif category == "laptop":
@@ -188,28 +189,28 @@ def add_to_cart(request, item_id, category):
     else:
         return redirect('myapp:home')
 
-    # Retrieve the cart from session (or create an empty cart if it doesn't exist)
+    # Retrieve or create the cart session
     cart = request.session.get('cart', {})
 
-    # Check if the item is already in the cart
+    # Item key based on category and ID
     item_key = f"{category}-{item_id}"
+    
     if item_key in cart:
         cart[item_key]['quantity'] += 1
     else:
         cart[item_key] = {
             'name': item.name,
-            'price': float(item.price),  # Convert Decimal to float ✅
+            'price': float(item.price),
             'image': item.image.url if item.image else '',
             'quantity': 1,
             'category': category
         }
 
-    # Save the updated cart back to the session
+    # Save the cart back to the session and mark it as modified
     request.session['cart'] = cart
-    request.session.modified = True  # Ensure changes are saved
+    request.session.modified = True
 
-    return redirect('myapp:cart_page')  # Redirect to cart page
-
+    return redirect('myapp:cart_page')
 
 @login_required
 def cart_page(request):
@@ -217,11 +218,9 @@ def cart_page(request):
     return render(request, 'cart.html', {'cart_items': cart})
 
 
+
 @login_required
 def remove_from_cart(request, item_key):
-    """
-    Removes an item from the session-based cart.
-    """
     cart = request.session.get('cart', {})
 
     if item_key in cart:
@@ -230,3 +229,4 @@ def remove_from_cart(request, item_key):
         request.session.modified = True  # Ensure session updates
 
     return redirect('myapp:cart_page')
+
