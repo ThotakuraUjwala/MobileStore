@@ -42,10 +42,11 @@
             <button class="addtocart">
               <a href="{% url 'myapp:add_to_cart' category='mobile' item_id=i.id %}" id="impact">Add to Cart</a>
             </button>
-            <button class="addtocart">
-              <a href="" id="impact">Buy now</a>
-            </button>
-  
+            <form action="{% url 'myapp:place_order' item_id=i.id category='mobile' %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="addtocart">Buy Now</button>
+          </form>
+
         </div>
       </div>
     </div>

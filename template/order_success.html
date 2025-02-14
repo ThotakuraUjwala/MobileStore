@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Order Successful</title>
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/order_success.css' %}">
+{% endblock css %}
+
+{% block body %}
+<div class="order">
+    <img src="{% static 'images/order.png' %}" alt="order_successful">
+    <h1>🎉 Order Placed Successfully!</h1>
+    <h3 class="message">Thank you for shopping with us. A confirmation email has been sent.</h3><br>
+    <h4><a href="{% url 'myapp:home' %}">Return to Home</a></h4>
+</div>
+    
+{% endblock body %}
+

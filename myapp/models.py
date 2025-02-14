@@ -91,3 +91,14 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.name} ({self.quantity})"
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Customer details
+    name = models.CharField(max_length=255)  # Product name
+    category = models.CharField(max_length=50)  # Mobile, Laptop, Accessory
+    price = models.FloatField()  # Product price
+    quantity = models.IntegerField(default=1)  # Quantity purchased
+    order_date = models.DateTimeField(auto_now_add=True)  # Order date
+
+    def __str__(self):
+        return f"{self.user.username} - {self.name} ({self.quantity})"
