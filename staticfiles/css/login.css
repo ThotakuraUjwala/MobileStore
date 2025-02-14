@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+/* General Styles */
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Image Wrapper */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Background Image (With Blur Effect) */
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);  /* Adjust blur level */
+}
+
+/* Container (Centers Everything) */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;  /* Ensures full screen centering */
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Animated Heading */
+.animated-text {
+    font-family: "Pacifico", cursive;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #b11556, #b1900c,rgb(120, 21, 195));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in-out, bounce 2s infinite alternate;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 500px) {
+    .animated-text {
+        font-size: 24px;
+    }
+}
+
+
+/* Auth Container - Centered */
+.auth-container {
+    background: rgba(172, 53, 98, 0.364); /* Slight transparency */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    
+    /* Centering */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form Inputs */
+.auth-container input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Button */
+.auth-container button {
+    background: #11907f;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.auth-container button:hover {
+    background: #13b667;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 16px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .animated-text {
+        font-size: 20px;
+    }
+
+    .auth-container {
+        padding: 20px;
+    }
+}
