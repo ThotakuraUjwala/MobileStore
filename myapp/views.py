@@ -208,10 +208,7 @@ def cart_page(request):
 def remove_from_cart(request, category, item_id):
     try:
         cart_item = CartItem.objects.get(user=request.user, category=category, item_id=item_id)
-<<<<<<< HEAD
-                                              
-=======
->>>>>>> 51a183ae57b3c4e585ae0e557d7c4f6fc411aac8
+
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
             cart_item.save()
