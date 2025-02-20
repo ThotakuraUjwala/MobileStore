@@ -60,6 +60,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 3.0rem;
 }
 @keyframes fadeIn {
     0% {
@@ -223,5 +224,40 @@ body {
     #empty-cartimg{
         height: 200px;
         width: 200px;
+    }
+}
+.mainbtn {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.addtocart {
+    background-color: aquamarine;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addtocart a {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-width: 480px) {
+    .mainbtn {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .addtocart {
+        font-size: 0.9rem;
+        padding: 8px 15px;
     }
 }

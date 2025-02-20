@@ -40,7 +40,7 @@
 
 <h1 id="best">Best Selling mobiles</h1>
 <div class="phone-container">
-  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <button class="arrow left" onclick="movePhones('left',this)">&#8592;</button>
   <div class="phone">
     {% for i in bestselling %}
     <a href="{% url 'myapp:mobiledata' i.id %}" style="text-decoration: none">
@@ -57,7 +57,7 @@
     </a>
     {% endfor %}
   </div>
-  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+  <button class="arrow right" onclick="movePhones('right',this)">&#8594;</button>
 </div>
 
 
@@ -74,7 +74,7 @@
 
 <h1 id="best">Hurry Up! Get Up to 30% Off</h1>
 <div class="phone-container">
-  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <button class="arrow left" onclick="movePhones('left',this)">&#8592;</button>
   <div class="phone">
     {% for i in moboff %}
     <a href="{% url 'myapp:mobiledata' i.id %}" style="text-decoration: none">
@@ -91,12 +91,12 @@
     </a>
     {% endfor %}
   </div>
-  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+  <button class="arrow right" onclick="movePhones('right',this)">&#8594;</button>
 </div>
 
 <h1 id="best">Best Selling Laptops</h1>
 <div class="phone-container">
-  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <button class="arrow left" onclick="movePhones('left',this)">&#8592;</button>
   <div class="phone">
     {% for i in bestlap %}
     <a href="{% url 'myapp:lapdata' i.id %}" style="text-decoration: none">
@@ -113,7 +113,7 @@
     </a>
     {% endfor %}
   </div>
-  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+  <button class="arrow right" onclick="movePhones('right',this)">&#8594;</button>
 </div>
 
 
@@ -130,7 +130,7 @@
 
 <h1 id="best">Hurry Up! Get Up to 30% Off</h1>
 <div class="phone-container">
-  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <button class="arrow left" onclick="movePhones('left',this)">&#8592;</button>
   <div class="phone">
     {% for i in lapoff %}
     <a href="{% url 'myapp:lapdata' i.id %}" style="text-decoration: none">
@@ -147,12 +147,12 @@
     </a>
     {% endfor %}
   </div>
-  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+  <button class="arrow right" onclick="movePhones('right',this)">&#8594;</button>
 </div>
 
 <h1 id="best">Newly launched and Trending Accessories</h1>
 <div class="phone-container">
-  <button class="arrow left" onclick="movePhones('left')">&#8592;</button>
+  <button class="arrow left" onclick="movePhones('left',this)">&#8592;</button>
   <div class="phone">
     {% for i in new_accessories %}
     <a href="{% url 'myapp:accessoriesdata' i.id %}" style="text-decoration: none">
@@ -170,7 +170,7 @@
         <p>No newly launched accessories available.</p>
     {% endfor %}
   </div>
-  <button class="arrow right" onclick="movePhones('right')">&#8594;</button>
+  <button class="arrow right" onclick="movePhones('right',this)">&#8594;</button>
 </div>
 
 

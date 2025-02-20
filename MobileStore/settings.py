@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-qnzj7)_@dkxc-63ojt2+*1xawummm8$)t%x*j+@yc^x=*tm*(+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware"
+
 ]
 
 ROOT_URLCONF = 'MobileStore.urls'
@@ -87,6 +89,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
 
@@ -128,14 +131,18 @@ LOGIN_URL = '/login/'  # Redirects to your actual login page
 
 STATICFILES_DIRS=[BASE_DIR/'static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in DB
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Prevent clearing when the browser closes
-SESSION_COOKIE_AGE = 60 * 60 * 24 * 365 * 10  # Set session expiration to 10 years
-SESSION_SAVE_EVERY_REQUEST = True  # Save session every time a request is made
-SESSION_COOKIE_SECURE = False  # Set to True if using HTTPS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'lomamobiles15@gmail.com'  # Replace with your email
+EMAIL_HOST_PASSWORD = 'haxy csrw pydr ixcb'  # Replace with your email app password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 

@@ -29,6 +29,11 @@
                 {% endfor %}
             </div>
 
+            <form action="{% url 'myapp:checkout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="addtocart">Checkout</button>
+            </form>
+            
         {% else %}
         <img src="{% static 'images/cart.png' %}" alt="" id="empty-cartimg">
         <h4 class="empty-cart"><a href="{% url 'myapp:home' %}">Continue Shopping</a></4>

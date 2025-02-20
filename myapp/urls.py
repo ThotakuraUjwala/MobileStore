@@ -20,9 +20,13 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
-    path('add-to-cart/<str:category>/<int:item_id>/', add_to_cart, name='add_to_cart'),
     path('cart/', cart_page, name='cart_page'),
-path('remove-from-cart/<str:category>/<int:item_id>/', remove_from_cart, name='remove_from_cart'),
+    path('add-to-cart/<str:category>/<int:item_id>/', add_to_cart, name='add_to_cart'),
+    path('remove-from-cart/<str:category>/<int:item_id>/',remove_from_cart, name='remove_from_cart'),
+    path('place-order/<str:category>/<int:item_id>/',place_order, name='place_order'),
+    path('checkout/', checkout, name='checkout'),
+    path('owner', owner_orders, name='owner_orders'),
+    path('order-success/',order_success, name='order_success'),
 ]
 
 

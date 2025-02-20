@@ -4,13 +4,15 @@ from .models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import SignupForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.http import HttpResponseForbidden
+
 
 
 def home(request):
@@ -205,19 +207,92 @@ def cart_page(request):
 @login_required
 def remove_from_cart(request, category, item_id):
     try:
-        # Fetch the specific item (ensuring only one result)
         cart_item = CartItem.objects.get(user=request.user, category=category, item_id=item_id)
+<<<<<<< HEAD
                                               
+=======
+>>>>>>> 51a183ae57b3c4e585ae0e557d7c4f6fc411aac8
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
             cart_item.save()
         else:
-            cart_item.delete(using='default')  # Ensure DB commit
-        
+            cart_item.delete()
     except CartItem.DoesNotExist:
-        pass  # Ignore if already deleted
+        pass
 
     return redirect('myapp:cart_page')
 
 
+@login_required
+def place_order(request, item_id, category):
+    user = request.user
 
+    if category == "mobile":
+        item = get_object_or_404(mobiles, id=item_id)
+    elif category == "laptop":
+        item = get_object_or_404(laptops, id=item_id)
+    elif category == "accessory":
+        item = get_object_or_404(Accessories, id=item_id)
+    else:
+        return redirect('myapp:home')
+
+    # Save the order in Order model
+    Order.objects.create(
+        user=user,
+        name=item.name,
+        category=category,
+        price=item.price,
+        quantity=1
+    )
+
+    # Send confirmation email
+    subject = "Order Confirmation - Your Purchase is Successful!"
+    message = f"Dear {user.username},\n\nYour order has been placed successfully!\n\nOrder Details:\n{item.name} - ₹{item.price} (Qty: 1)\n\nThank you for shopping with us!\n\nBest Regards,\nOnline Mobile Store Team"
+    send_mail(subject, message, 'lomamobiles15@gmail.com', [user.email], fail_silently=False)
+
+    return redirect('myapp:order_success')
+
+
+@login_required
+def checkout(request):
+    user = request.user
+    cart_items = CartItem.objects.filter(user=user)
+
+    if not cart_items:
+        return redirect('myapp:cart_page')
+
+    order_details = "\n".join([
+        f"{item.name} - ₹{item.price} (Qty: {item.quantity})"
+        for item in cart_items
+    ])
+
+    for item in cart_items:
+        Order.objects.create(
+            user=user,
+            name=item.name,
+            category=item.category,
+            price=item.price,
+            quantity=item.quantity
+        )
+
+    # Send confirmation email
+    subject = "Order Confirmation - Your Purchase is Successful!"
+    message = f"Dear {user.username},\n\nYour order has been placed successfully!\n\nOrder Details:\n{order_details}\n\nThank you for shopping with us!\n\nBest Regards,\nOnline Mobile Store Team"
+    send_mail(subject, message, 'lomamobiles15@gmail.com', [user.email], fail_silently=False)
+
+    cart_items.delete()
+
+    return redirect('myapp:order_success')
+
+
+@login_required
+def owner_orders(request):
+    if not request.user.is_superuser:
+        return HttpResponseForbidden("Access Denied")
+
+    orders = Order.objects.all()  
+    return render(request, "owner_orders.html", {"orders": orders})
+
+
+def order_success(request):
+    return render(request, 'order_success.html')
