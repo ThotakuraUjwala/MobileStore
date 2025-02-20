@@ -207,7 +207,7 @@ def remove_from_cart(request, category, item_id):
     try:
         # Fetch the specific item (ensuring only one result)
         cart_item = CartItem.objects.get(user=request.user, category=category, item_id=item_id)
-
+                                              
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
             cart_item.save()
