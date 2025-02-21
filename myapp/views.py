@@ -19,7 +19,7 @@ def home(request):
     slidesdata = Slides.objects.all()
     bestselling = mobiles.objects.filter(is_bestselling=True)
     brands = Brand.objects.all()
-    offerdata=Offer.objects.all()
+    offerdata=mobiles.objects.filter(is_deals=True)
     bestlap=laptops.objects.filter(is_bestselling=True)
     lapoff=laptops.objects.filter(is_deals=True)
     lapbrands = lapBrand.objects.all()
