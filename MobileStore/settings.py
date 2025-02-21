@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+import pymysql
+pymysql.install_as_MySQLdb()
+
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,14 +83,22 @@ WSGI_APPLICATION = 'MobileStore.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_mobile',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',  # or your database server IP
-        'PORT': '3306',       # default MySQL port
+        'NAME': os.environ.get('MYSQL_DATABASE', 'railway'),
+        'USER': os.environ.get('MYSQL_USER', 'root'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'siXgUqmBFQAekgSLcEZFjDaAqRXcoLyV'),
+        'HOST': os.environ.get('MYSQL_HOST', 'trolley.proxy.rlwy.net'),
+        'PORT': os.environ.get('MYSQL_PORT', '31485'),
     }
 }
 
